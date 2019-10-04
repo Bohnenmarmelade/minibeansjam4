@@ -29,8 +29,9 @@ public class TextInput : MonoBehaviour
     {
     }
 
-    private void OnType(char typedCharacter)
+    private void OnType(string keyDownPayload)
     {
+        char typedCharacter = keyDownPayload[0];
         Debug.Log("TYPED CHAR");
         if (_typeableWord.type(typedCharacter))
             OnTypingCorrectly();
