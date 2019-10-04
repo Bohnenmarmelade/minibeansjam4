@@ -8,7 +8,7 @@ public class EventManager: MonoBehaviour{
 
 
     [System.Serializable]
-    public class GameKeyEvent : UnityEvent<char>
+    public class GameKeyEvent : UnityEvent<string>
     {
     }
 
@@ -46,7 +46,7 @@ public class EventManager: MonoBehaviour{
         }
     }
 
-    public static void StartListening(string eventName, UnityAction<char> listener)
+    public static void StartListening(string eventName, UnityAction<string> listener)
     {
         GameKeyEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
@@ -61,7 +61,7 @@ public class EventManager: MonoBehaviour{
         }
     }
 
-    public static void StopListening(string eventName, UnityAction<char> listener)
+    public static void StopListening(string eventName, UnityAction<string> listener)
     {
         if (eventManager == null) return;
         GameKeyEvent thisEvent = null;
@@ -71,12 +71,12 @@ public class EventManager: MonoBehaviour{
         }
     }
 
-    public static void TriggerEvent(string eventName, char pressedKey=Char.MinValue)
+    public static void TriggerEvent(string eventName, string payload="")
     {
         GameKeyEvent thisEvent = new GameKeyEvent();
         if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
         {
-            thisEvent.Invoke(pressedKey);
+            thisEvent.Invoke(payload);
         }
     }
 
