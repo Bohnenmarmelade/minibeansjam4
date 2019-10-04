@@ -11,12 +11,12 @@ public class GameStats : MonoBehaviour
 
     void OnEnable()
     {
-        EventManager.StartListening("typo", looseLife);
+        EventManager.StartListening(Events.TYPO, looseLife);
     }
 
     void OnDisable()
     {
-        EventManager.StopListening("typo", looseLife);
+        EventManager.StopListening(Events.TYPO, looseLife);
     }
 
     private void looseLife(char c) {

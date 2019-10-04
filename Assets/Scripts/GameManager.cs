@@ -6,12 +6,12 @@ public class GameManager : MonoBehaviour
 {
     void OnEnable()
     {
-        EventManager.StartListening("gameOver", gameOver);
+        EventManager.StartListening(Events.GAME_OVER, gameOver);
     }
 
     void OnDisable()
     {
-        EventManager.StopListening("gameOver", gameOver);
+        EventManager.StopListening(Events.GAME_OVER, gameOver);
     }
 
     private void gameOver(char c) {
