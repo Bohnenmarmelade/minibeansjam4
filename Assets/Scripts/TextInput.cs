@@ -6,53 +6,39 @@ public class TextInput : MonoBehaviour
     private TypeableWord _typeableWord;
     public Text textFieldTyped;
 
-    private bool _locked = false;
-    
-    public TypeableWord TypeableWord
-    {
-        set => _typeableWord = value;
-    }
-
-    private static readonly KeyCode[] allowedKeys = {
-        KeyCode.A, KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E
-    };
-
     // Start is called before the first frame update
     private void Start()
     {
+        EventManager.StartListening(Events.KEY_DOWN, OnType);
         _typeableWord = new TypeableWord("aeb");
-        OnTypingCorrectly();
+        textFieldTyped.text = _typeableWord.toBeTyped;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (_locked) return;
-        
-        foreach(KeyCode kcode in allowedKeys)
+    }
+
+    private void OnType(char typedCharacter)
+    {
+        Debug.Log("TYPED CHAR");
+        if (_typeableWord.type(typedCharacter))
+            OnTypingCorrectly();
+        else
         {
-            if (Input.GetKeyDown(kcode)) {
-                var isCorrectChar = _typeableWord.type(kcode.ToString().ToLower()[0]);
-                if (isCorrectChar)
-                {
-                    OnTypingCorrectly();
-                }
-                else
-                {
-                    OnTypingError();
-                }
-            }
+            OnTypingError();
         }
     }
 
     private void OnTypingError()
     {
-        textFieldTyped.text = "YOU FAILED";
-        _locked = true;
+        EventManager.TriggerEvent(Events.TYPO);
     }
     
     private void OnTypingCorrectly()
     {
+        if (_typeableWord.toBeTyped.Length == 0)
+            EventManager.StopListening(Events.KEY_DOWN, OnType);
         textFieldTyped.text = "<b>" + _typeableWord.succesfullyTyped + "</b>" + _typeableWord.toBeTyped;
     }
 }

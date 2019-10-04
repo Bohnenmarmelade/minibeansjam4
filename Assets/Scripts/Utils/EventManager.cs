@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -70,7 +71,7 @@ public class EventManager: MonoBehaviour{
         }
     }
 
-    public static void TriggerEvent(string eventName, char pressedKey)
+    public static void TriggerEvent(string eventName, char pressedKey=Char.MinValue)
     {
         GameKeyEvent thisEvent = new GameKeyEvent();
         if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
