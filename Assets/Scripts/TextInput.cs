@@ -4,14 +4,24 @@ using UnityEngine.UI;
 public class TextInput : MonoBehaviour
 {
     private TypeableWord _typeableWord;
+
+    public TypeableWord TypeableWord
+    {
+        get => _typeableWord;
+        set
+        {
+            _typeableWord = value;
+            textFieldTyped.text = _typeableWord.toBeTyped;
+            Debug.Log("Got a new word: " + _typeableWord.fullWord);
+        }
+    }
+
     public Text textFieldTyped;
 
     // Start is called before the first frame update
     private void Start()
     {
         EventManager.StartListening(Events.KEY_DOWN, OnType);
-        _typeableWord = new TypeableWord("aeb");
-        textFieldTyped.text = _typeableWord.toBeTyped;
     }
 
     // Update is called once per frame
