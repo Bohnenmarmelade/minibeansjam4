@@ -14,7 +14,7 @@ namespace Utils
                 if (Char.IsLetter(key))
                 {
                     Debug.Log("triggerKey " + Input.inputString);
-                    EventManager.TriggerEvent(Events.KEY_DOWN, "" + key);
+                    EventManager.TriggerEvent(Events.KEY_DOWN, key.ToString());
                 }
             }
         }
