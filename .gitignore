@@ -137,3 +137,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/osx,unity,linux,windows
+
+# Intellij Rider
+.idea/
