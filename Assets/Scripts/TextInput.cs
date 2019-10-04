@@ -10,8 +10,13 @@ public class TextInput : MonoBehaviour
     private void Start()
     {
         EventManager.StartListening(Events.KEY_DOWN, OnType);
-        _typeableWord = new TypeableWord("aeb");
-        textFieldTyped.text = _typeableWord.toBeTyped;
+        newWord();
+    }
+
+    private void newWord()
+    {
+        _typeableWord = new TypeableWord(Meds.getMed(Difficulty.EASY).ToUpper());
+        textFieldTyped.text = "<color=#D3D3D3>" + _typeableWord.toBeTyped + "</color>";
     }
 
     // Update is called once per frame
@@ -39,7 +44,11 @@ public class TextInput : MonoBehaviour
     private void OnTypingCorrectly()
     {
         if (_typeableWord.toBeTyped.Length == 0)
-            EventManager.StopListening(Events.KEY_DOWN, OnType);
-        textFieldTyped.text = "<b>" + _typeableWord.succesfullyTyped + "</b>" + _typeableWord.toBeTyped;
+        {
+            //EventManager.StopListening(Events.KEY_DOWN, OnType);
+            newWord();
+        }
+            
+        textFieldTyped.text = "<b>" + _typeableWord.succesfullyTyped + "</b>" + "<color=#D3D3D3>" + _typeableWord.toBeTyped+ "</color>";
     }
 }
