@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
+
+
     void OnEnable()
     {
         EventManager.StartListening(Events.GAME_OVER, gameOver);
