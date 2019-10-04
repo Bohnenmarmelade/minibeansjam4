@@ -11,7 +11,7 @@ public class TextInput : MonoBehaviour
         set
         {
             _typeableWord = value;
-            textFieldTyped.text = _typeableWord.toBeTyped;
+            SetTextFieldsContent();
             EventManager.StartListening(Events.KEY_DOWN, OnType);
         }
     }
@@ -41,6 +41,13 @@ public class TextInput : MonoBehaviour
             EventManager.StopListening(Events.KEY_DOWN, OnType);
             EventManager.TriggerEvent(Events.BOTTLE_SUCCES, _typeableWord.fullWord);
         }
-        textFieldTyped.text = "<b>" + _typeableWord.succesfullyTyped + "</b>" + _typeableWord.toBeTyped;
+
+        SetTextFieldsContent();
+    }
+
+    private void SetTextFieldsContent()
+    {
+        textFieldTyped.text = "<b>" + _typeableWord.succesfullyTyped + "</b>" + "<color=#D3D3D3>" +
+               _typeableWord.toBeTyped + "</color>";
     }
 }

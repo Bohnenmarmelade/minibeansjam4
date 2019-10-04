@@ -20,10 +20,10 @@ public class TypeableWord
     public bool type(char typedCharacter)
     {
         char character = Char.ToLower(typedCharacter);
-        if (toBeTyped[0].Equals(character))
+        if (toBeTyped.ToLower()[0].Equals(character))
         {
+            succesfullyTyped += toBeTyped[0];
             toBeTyped = toBeTyped.Substring(1);
-            succesfullyTyped += character;
             return true;
         }
         else

@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class BottleMaster : MonoBehaviour
 {
     public GameObject bottlePrefab;
-    private Dictionary<string, Tuple<Vector3, GameObject>> bottles;
+    private Dictionary<string, Tuple<Vector3, GameObject>> _bottles;
 
     private List<Vector3> _positions;
 
@@ -19,31 +17,32 @@ public class BottleMaster : MonoBehaviour
         _positions.Add(new Vector3(-1.06f, 0.68f, 2.792969f));
         _positions.Add(new Vector3(1.06f, -0.68f, 2.792969f));
         
-        bottles = new Dictionary<string, Tuple<Vector3, GameObject>>();
+        _bottles = new Dictionary<string, Tuple<Vector3, GameObject>>();
         SpawnBottle();
 
         EventManager.StartListening(Events.BOTTLE_SUCCES, DeregisterBottle);
     }
-
+    
     private void SpawnBottle()
     {
         GameObject bottle = Instantiate(bottlePrefab, _positions[0], Quaternion.identity);
+        bottle.transform.parent = gameObject.transform;
         RegisterBottle(bottle);
     }
 
     void DeregisterBottle(string typeableWord)
     {
-        _positions.Add(bottles[typeableWord].Item1);
-        Destroy(bottles[typeableWord].Item2);
+        _positions.Add(_bottles[typeableWord].Item1);
+        Destroy(_bottles[typeableWord].Item2);
         
-        bottles.Remove(typeableWord);
+        _bottles.Remove(typeableWord);
         SpawnBottle();
     }
 
     void RegisterBottle(GameObject bottle)
     {
         var position = _positions[0];
-        bottles[bottle.gameObject.GetComponentInChildren<TextInput>().TypeableWord.fullWord] =
+        _bottles[bottle.gameObject.GetComponentInChildren<TextInput>().TypeableWord.fullWord] =
             new Tuple<Vector3, GameObject>(position, bottle);
         _positions.RemoveAt(0);
     }
