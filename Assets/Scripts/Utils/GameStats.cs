@@ -19,11 +19,11 @@ public class GameStats : MonoBehaviour
         EventManager.StopListening(Events.TYPO, looseLife);
     }
 
-    private void looseLife(char c) {
+    private void looseLife(string typoPayload) {
         if(currentLifes > 1){
             currentLifes--;
         }else{
-            EventManager.TriggerEvent("gameOver", 'l');
+            EventManager.TriggerEvent(Events.GAME_OVER, "");
         }
 
         Debug.Log("looseLife");

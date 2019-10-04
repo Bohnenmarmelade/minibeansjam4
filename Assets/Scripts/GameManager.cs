@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
-
-
     void OnEnable()
     {
         EventManager.StartListening(Events.GAME_OVER, gameOver);
@@ -17,7 +14,7 @@ public class GameManager : MonoBehaviour
         EventManager.StopListening(Events.GAME_OVER, gameOver);
     }
 
-    private void gameOver(char c) {
+    private void gameOver(string gameOverPayload) {
         Debug.Log("GameOver Dude!!!");
     }
 }
