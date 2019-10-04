@@ -21,7 +21,7 @@ public class TextInput : MonoBehaviour
     private void Start()
     {
         _typeableWord = new TypeableWord("aeb");
-        UpdateTextField();
+        OnTypingCorrectly();
     }
 
     // Update is called once per frame
@@ -34,22 +34,24 @@ public class TextInput : MonoBehaviour
             if (Input.GetKeyDown(kcode)) {
                 var isCorrectChar = _typeableWord.type(kcode.ToString().ToLower()[0]);
                 if (isCorrectChar)
-                    UpdateTextField();
+                {
+                    OnTypingCorrectly();
+                }
                 else
                 {
-                    TypingError();
+                    OnTypingError();
                 }
             }
         }
     }
 
-    private void TypingError()
+    private void OnTypingError()
     {
         textFieldTyped.text = "YOU FAILED";
         _locked = true;
     }
-
-    private void UpdateTextField()
+    
+    private void OnTypingCorrectly()
     {
         textFieldTyped.text = "<b>" + _typeableWord.succesfullyTyped + "</b>" + _typeableWord.toBeTyped;
     }
