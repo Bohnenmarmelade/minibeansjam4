@@ -60,7 +60,6 @@ namespace Bottles
             GameObject bottle = Instantiate(bottlePrefab, _positions[0], Quaternion.identity);
             bottle.GetComponent<Bottle>().InitWordByDifficulty(_currentDifficulty);
             bottle.transform.parent = gameObject.transform;
-
             RegisterBottle(bottle);
         }
 
