@@ -9,11 +9,8 @@ namespace Bottles
 
         public void SetTextFieldsContent()
         {
-            textField.text = gameObject/*.transform.parent*/
-                .GetComponent<Bottle>()
-                .typeableWord
-                .fullWord[0]
-                .ToString();
+            textField.text =
+                $"<color=#FFFFFF>{gameObject.GetComponent<Bottle>().typeableWord.fullWord[0].ToString()}</color>";
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utils;
 
-public class SoundController : MonoBehaviour
+public class TypingSoundController : MonoBehaviour
 {   
     public AudioClip keyPress;
     private AudioSource source;
