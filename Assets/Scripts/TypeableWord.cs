@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class TypeableWord
 {
@@ -12,9 +9,9 @@ public class TypeableWord
 
     public TypeableWord(string word)
     {
-        this.fullWord = word;
-        this.toBeTyped = word;
-        this.succesfullyTyped = "";
+        fullWord = word;
+        toBeTyped = word;
+        succesfullyTyped = "";
     }
 
     public bool type(char typedCharacter)
@@ -26,9 +23,7 @@ public class TypeableWord
             toBeTyped = toBeTyped.Substring(1);
             return true;
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 }

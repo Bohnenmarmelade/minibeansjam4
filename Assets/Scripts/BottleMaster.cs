@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Utils;
+using Random = System.Random;
 
 public class BottleMaster : MonoBehaviour
 {
@@ -15,11 +16,11 @@ public class BottleMaster : MonoBehaviour
     private void Awake()
     {
         _positions = new List<Vector3>();
-        _positions.Add(new Vector3(0.68f, -1.06f, 2.792969f));
-        _positions.Add(new Vector3(-0.68f, 1.06f, 2.792969f));
-        _positions.Add(new Vector3(-1.06f, 0.68f, 2.792969f));
-        _positions.Add(new Vector3(1.06f, -0.68f, 2.792969f));
-        
+        _positions.Add(new Vector3(0.68f, 0, 2.792969f));
+        _positions.Add(new Vector3(-0.68f, 0, 2.792969f));
+        _positions.Add(new Vector3(-1.06f, 0, 2.792969f));
+        _positions.Add(new Vector3(1.06f, 0, 2.792969f));
+
         _bottles = new Dictionary<string, GameObject>();
 
         SpawnBottle();
@@ -27,7 +28,13 @@ public class BottleMaster : MonoBehaviour
         EventManager.StartListening(Events.BOTTLE_SUCCES, DeregisterBottle);
         EventManager.StartListening(Events.INCREASE_DIFFICULTY, payload => IncreaseDifficulty());
     }
-    
+
+    private void OnDisable()
+    {
+        EventManager.StopListening(Events.BOTTLE_SUCCES, DeregisterBottle);
+        EventManager.StopListening(Events.INCREASE_DIFFICULTY, payload => IncreaseDifficulty());
+    }
+
     private void SpawnBottle()
     {
         GameObject bottle = Instantiate(bottlePrefab, _positions[0], Quaternion.identity);
@@ -50,7 +57,6 @@ public class BottleMaster : MonoBehaviour
 
     void RegisterBottle(GameObject bottle)
     {
-        var position = _positions[0];
         _bottles[bottle.gameObject.GetComponentInChildren<TextInput>().TypeableWord.fullWord] = bottle;
         _positions.RemoveAt(0);
     }
