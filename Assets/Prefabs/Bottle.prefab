@@ -76,7 +76,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: asdasdasd
+  m_Text: 
 --- !u!1 &8804511521758695747
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 3746893876880389076}
   - component: {fileID: 3187371784237851905}
   - component: {fileID: 6343836154181638553}
+  - component: {fileID: 4194024653130997727}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -176,6 +177,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4194024653130997727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8804511521758695747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2edf5b7a32dfa240a66dc49e9e6eede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9212400181381707348
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,6 +201,8 @@ GameObject:
   - component: {fileID: 108757674394736245}
   - component: {fileID: 2878653456940728875}
   - component: {fileID: 4002252546827742885}
+  - component: {fileID: 2141229047308154124}
+  - component: {fileID: 3399831131306879243}
   m_Layer: 0
   m_Name: Bottle
   m_TagString: Untagged
@@ -285,3 +300,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textField: {fileID: 5703222964795931037}
+--- !u!95 &2141229047308154124
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9212400181381707348}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 90e7f57d2e1e5ac45826d8179a434dd0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3399831131306879243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9212400181381707348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 941223729566108448332a16e02d7b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

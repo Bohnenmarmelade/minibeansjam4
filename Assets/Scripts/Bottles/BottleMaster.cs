@@ -8,28 +8,39 @@ namespace Bottles
     {
         public GameObject bottlePrefab;
         public TextInput textInput;
-    
+
         private Dictionary<string, GameObject> _bottles;
 
         private List<Vector3> _positions;
 
         private string _currentDifficulty = Difficulty.EASY;
 
+        private float _timeToSpawn = 3f;
+        private Scheduler _spawnScheduler;
+
+        private float _timeToIncreaseDifficulty = 10f;
+        private Scheduler _difficultyScheduler;
+
         private void Awake()
         {
             _positions = new List<Vector3>();
-            _positions.Add(new Vector3(0f, 0f, 2.792969f));
-            _positions.Add(new Vector3(0f, 0f, 2.792969f));
-            _positions.Add(new Vector3(0f, 0f, 2.792969f));
-            _positions.Add(new Vector3(0f, 0f, 2.792969f));
+            _positions.Add(new Vector3(Random.Range(-10f, 10f), -4f, 2.792969f));
+            _positions.Add(new Vector3(Random.Range(-10f, 10f), -4f, 2.792969f));
+            _positions.Add(new Vector3(Random.Range(-10f, 10f), -4f, 2.792969f));
+            _positions.Add(new Vector3(Random.Range(-10f, 10f), -4f, 2.792969f));
 
             _bottles = new Dictionary<string, GameObject>();
 
-            SpawnBottle();
-        
             EventManager.StartListening(Events.KEY_DOWN, ActiveBottleFromKeyDown);
             EventManager.StartListening(Events.BOTTLE_SUCCES, DeregisterBottle);
             EventManager.StartListening(Events.INCREASE_DIFFICULTY, payload => IncreaseDifficulty());
+        }
+
+        private void OnEnable()
+        {
+            _difficultyScheduler = new Scheduler(_timeToIncreaseDifficulty,
+                () => EventManager.TriggerEvent(Events.INCREASE_DIFFICULTY));
+            _spawnScheduler = new Scheduler(_timeToSpawn, SpawnBottle, true);
         }
 
         private void OnDisable()
@@ -38,24 +49,26 @@ namespace Bottles
             EventManager.StopListening(Events.INCREASE_DIFFICULTY, payload => IncreaseDifficulty());
         }
 
+        private void Update()
+        {
+            _difficultyScheduler.Update(Time.deltaTime);
+            _spawnScheduler.Update(Time.deltaTime);
+        }
+
         private void SpawnBottle()
         {
             GameObject bottle = Instantiate(bottlePrefab, _positions[0], Quaternion.identity);
             bottle.GetComponent<Bottle>().InitWordByDifficulty(_currentDifficulty);
             bottle.transform.parent = gameObject.transform;
-        
+
             RegisterBottle(bottle);
         }
 
         void DeregisterBottle(string typeableWord)
         {
-            EventManager.TriggerEvent(Events.INCREASE_DIFFICULTY);
-        
             _positions.Add(_bottles[typeableWord].transform.position);
             Destroy(_bottles[typeableWord]);
-        
             _bottles.Remove(typeableWord);
-            SpawnBottle();
 
             textInput.TypeableWord = new TypeableWord("");
         }
@@ -75,16 +88,21 @@ namespace Bottles
         void ActiveBottleFromKeyDown(string typedKey)
         {
             if (TextInputIsLocked()) return;
-        
-            foreach(KeyValuePair<string, GameObject> bottleEntry in _bottles)
+
+            foreach (KeyValuePair<string, GameObject> bottleEntry in _bottles)
             {
-                if (bottleEntry.Key.ToLower()[0].Equals(typedKey[0]))
+                if (BottleCanBeActivated(typedKey, bottleEntry.Key, bottleEntry.Value))
                 {
                     SetAndUpdateActiveWord(bottleEntry.Value, typedKey);
                     return;
                 }
             }
+        }
 
+        bool BottleCanBeActivated(string typedKey, string bottleEntryKey, GameObject bottleEntryValue)
+        {
+            return bottleEntryKey.ToLower()[0].Equals(typedKey[0]) &&
+                   bottleEntryValue.GetComponent<FadingAnimation>().IsSpawned();
         }
 
         void SetAndUpdateActiveWord(GameObject bottle, string typedKey)
@@ -93,7 +111,7 @@ namespace Bottles
             textInputTypeableWord.type(typedKey[0]);
             textInput.TypeableWord = textInputTypeableWord;
         }
-    
+
         bool TextInputIsLocked()
         {
             var textInputTypeableWord = textInput.TypeableWord;
