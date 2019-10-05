@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public Text finalScore;
-
     void OnEnable()
     {
         EventManager.StartListening(Events.GAME_OVER, gameOver);
@@ -21,6 +19,5 @@ public class GameManager : MonoBehaviour
     private void gameOver(string gameOverPayload) {
         Debug.Log("GameOver Dude!!!");
         SceneManager.LoadScene("ScoreScene");
-        finalScore.text = gameOverPayload;
     }
 }
