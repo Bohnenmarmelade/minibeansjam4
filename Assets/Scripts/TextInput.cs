@@ -15,7 +15,7 @@ public class TextInput : MonoBehaviour
 
     private void newWord()
     {
-        _typeableWord = new TypeableWord(Meds.getMed(Difficulty.NINETOUSANDANDONE).ToUpper());
+        _typeableWord = new TypeableWord(Meds.getMed(Difficulty.EASY).ToUpper());
         textFieldTyped.text = "<color=#D3D3D3>" + _typeableWord.toBeTyped + "</color>";
     }
 
