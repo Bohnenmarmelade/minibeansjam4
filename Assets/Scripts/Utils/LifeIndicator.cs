@@ -5,7 +5,7 @@ using UnityEngine;
 public class LifeIndicator : MonoBehaviour
 {
     public GameObject heartPrefab;
-    public int maxLifes = 10;
+    private GameStatsController gameStatsController;
     public float marginTop = 5f;
 
     private List<GameObject> currentLifes;
@@ -19,6 +19,7 @@ public class LifeIndicator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameStatsController = GameObject.FindGameObjectsWithTag("_app")[0].GetComponent(typeof(GameStatsController)) as GameStatsController;
         currentLifes = new List<GameObject>();
 
         //calculate position of the life indicators (top left for now)
@@ -40,37 +41,31 @@ public class LifeIndicator : MonoBehaviour
         initLifeBar();
 
         EventManager.StartListening(Events.TYPO, loseLife);
+        EventManager.StartListening(Events.GAME_OVER, stopListening);
+
 
         Debug.Log("Top Left Corner is at: " + topLeft.ToString());
         Debug.Log("Life Indicator is at: " + positionInWorldSpace.ToString());
     }
 
-    /*
-     *  Returns true if no lifes left
-     */
     public void loseLife(string _)
     {
-        Debug.Log("life count: " + currentLifes.Count);
-        if (currentLifes.Count <= 0)
-            return;
-        int indexOfLastLife = currentLifes.Count - 1;
-        Destroy(currentLifes[indexOfLastLife]);
-        currentLifes.RemoveAt(indexOfLastLife);
-        if (indexOfLastLife <= 0)
-            isDead();
+        int lastIndex = currentLifes.Count;
+        GameObject last = currentLifes[currentLifes.Count - 1];
+
+        Destroy(last);
+        currentLifes.Remove(last);
     }
 
-    public void isDead()
+    private void stopListening(string _)
     {
-        Debug.Log("YOU FAILED");
         EventManager.StopListening(Events.TYPO, loseLife);
-        EventManager.TriggerEvent(Events.GAME_OVER);
     }
 
     public void initLifeBar()
     {
         Vector3 nextPos = positionInWorldSpace;
-        for(int i = 0; i < maxLifes; i++)
+        for(int i = 0; i < gameStatsController.currentLifes; i++)
         {
             GameObject heart = Instantiate(heartPrefab, nextPos, Quaternion.identity);
             heart.transform.SetParent(canvas.transform, false);
