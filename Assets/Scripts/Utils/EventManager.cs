@@ -1,83 +1,83 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EventManager: MonoBehaviour{
+namespace Utils
+{
+    public class EventManager: MonoBehaviour {
 
-
-    [System.Serializable]
-    public class GameKeyEvent : UnityEvent<string>
-    {
-    }
-
-    private Dictionary<string, GameKeyEvent> eventDictionary;
-
-    private static EventManager eventManager;
-
-    public static EventManager instance
-    {
-        get
+        [System.Serializable]
+        public class GameKeyEvent : UnityEvent<string>
         {
-            if (!eventManager)
-            {
-                eventManager = FindObjectOfType(typeof(EventManager)) as EventManager;
+        }
 
+        private Dictionary<string, GameKeyEvent> eventDictionary;
+
+        private static EventManager eventManager;
+
+        public static EventManager instance
+        {
+            get
+            {
                 if (!eventManager)
                 {
-                    Debug.LogError("There needs to be one active EventManger script on a GameObject in your scene.");
+                    eventManager = FindObjectOfType(typeof(EventManager)) as EventManager;
+
+                    if (!eventManager)
+                    {
+                        Debug.LogError("There needs to be one active EventManger script on a GameObject in your scene.");
+                    }
+                    else
+                    {
+                        eventManager.Init();
+                    }
                 }
-                else
-                {
-                    eventManager.Init();
-                }
+
+                return eventManager;
             }
-
-            return eventManager;
         }
-    }
 
-    void Init()
-    {
-        if (eventDictionary == null)
+        void Init()
         {
-            eventDictionary = new Dictionary<string, GameKeyEvent>();
+            if (eventDictionary == null)
+            {
+                eventDictionary = new Dictionary<string, GameKeyEvent>();
+            }
         }
-    }
 
-    public static void StartListening(string eventName, UnityAction<string> listener)
-    {
-        GameKeyEvent thisEvent = null;
-        if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
+        public static void StartListening(string eventName, UnityAction<string> listener)
         {
-            thisEvent.AddListener(listener);
+            GameKeyEvent thisEvent = null;
+            if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
+            {
+                thisEvent.AddListener(listener);
+            }
+            else
+            {
+                thisEvent = new GameKeyEvent();
+                thisEvent.AddListener(listener);
+                instance.eventDictionary.Add(eventName, thisEvent);
+            }
         }
-        else
-        {
-            thisEvent = new GameKeyEvent();
-            thisEvent.AddListener(listener);
-            instance.eventDictionary.Add(eventName, thisEvent);
-        }
-    }
 
-    public static void StopListening(string eventName, UnityAction<string> listener)
-    {
-        if (eventManager == null) return;
-        GameKeyEvent thisEvent = null;
-        if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
+        public static void StopListening(string eventName, UnityAction<string> listener)
         {
-            thisEvent.RemoveListener(listener);
+            if (eventManager == null) return;
+            GameKeyEvent thisEvent = null;
+            if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
+            {
+                thisEvent.RemoveListener(listener);
+            }
         }
-    }
 
-    public static void TriggerEvent(string eventName, string payload="")
-    {
-        GameKeyEvent thisEvent = new GameKeyEvent();
-        if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
+        public static void TriggerEvent(string eventName, string payload="")
         {
-            thisEvent.Invoke(payload);
+            GameKeyEvent thisEvent = new GameKeyEvent();
+            if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
+            {
+                thisEvent.Invoke(payload);
+            }
         }
-    }
 
+    }
 }
