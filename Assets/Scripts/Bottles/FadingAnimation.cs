@@ -37,7 +37,8 @@ namespace Bottles
                 _passedTime += Time.deltaTime;
                 AnimateBlackToColor();
                 
-                _onSpawn?.Invoke();
+                if (_passedTime >= TimeToFade + TimeToColor)
+                    _onSpawn?.Invoke();
             }
         }
 

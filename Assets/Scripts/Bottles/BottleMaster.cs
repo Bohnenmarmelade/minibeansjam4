@@ -11,8 +11,6 @@ namespace Bottles
 
         private Dictionary<string, GameObject> _bottles;
 
-        private List<Vector3> _positions;
-
         private string _currentDifficulty = Difficulty.EASY;
 
         private float _timeToSpawn = 3f;
@@ -21,14 +19,10 @@ namespace Bottles
         private float _timeToIncreaseDifficulty = 10f;
         private Scheduler _difficultyScheduler;
 
+        private float _zOffset;
+
         private void Awake()
         {
-            _positions = new List<Vector3>();
-            _positions.Add(new Vector3(Random.Range(-10f, 10f), -4f, 2.792969f));
-            _positions.Add(new Vector3(Random.Range(-10f, 10f), -4f, 2.792969f));
-            _positions.Add(new Vector3(Random.Range(-10f, 10f), -4f, 2.792969f));
-            _positions.Add(new Vector3(Random.Range(-10f, 10f), -4f, 2.792969f));
-
             _bottles = new Dictionary<string, GameObject>();
 
             EventManager.StartListening(Events.KEY_DOWN, ActiveBottleFromKeyDown);
@@ -57,7 +51,7 @@ namespace Bottles
 
         private void SpawnBottle()
         {
-            GameObject bottle = Instantiate(bottlePrefab, _positions[0], Quaternion.identity);
+            GameObject bottle = Instantiate(bottlePrefab, GetPosition(), Quaternion.identity);
             bottle.GetComponent<Bottle>().InitWordByDifficulty(_currentDifficulty);
             bottle.transform.parent = gameObject.transform;
             RegisterBottle(bottle);
@@ -65,7 +59,6 @@ namespace Bottles
 
         void DeregisterBottle(string typeableWord)
         {
-            _positions.Add(_bottles[typeableWord].transform.position);
             Destroy(_bottles[typeableWord]);
             _bottles.Remove(typeableWord);
 
@@ -75,7 +68,6 @@ namespace Bottles
         void RegisterBottle(GameObject bottle)
         {
             _bottles[bottle.gameObject.GetComponent<Bottle>().typeableWord.fullWord] = bottle;
-            _positions.RemoveAt(0);
         }
 
         void IncreaseDifficulty()
@@ -118,7 +110,13 @@ namespace Bottles
                 return false;
             if (textInput.TypeableWord.fullWord.Equals(""))
                 return false;
+            
             return true;
+        }
+
+        private Vector3 GetPosition()
+        {
+            return new Vector3(Random.Range(-13f, 13f), -4f, 2.792969f + (++_zOffset));
         }
     }
 }
