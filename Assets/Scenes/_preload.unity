@@ -131,6 +131,8 @@ GameObject:
   - component: {fileID: 468644111}
   - component: {fileID: 468644110}
   - component: {fileID: 468644109}
+  - component: {fileID: 468644113}
+  - component: {fileID: 468644112}
   m_Layer: 0
   m_Name: _app
   m_TagString: Untagged
@@ -150,7 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfb371b750a7b4575bb014bfde4c92cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
   currentLifes: 10
   score: 0
 --- !u!114 &468644110
@@ -179,3 +180,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &468644112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468644108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8094ad8a5769741ebbc898828e03c5ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &468644113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468644108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38907ba99c7b46e582c4c6bc4201af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
