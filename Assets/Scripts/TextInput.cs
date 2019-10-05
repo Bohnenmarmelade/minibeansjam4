@@ -33,6 +33,7 @@ public class TextInput : MonoBehaviour
     private void OnTypingError(char typo)
     {
         EventManager.TriggerEvent(Events.TYPO, typo.ToString());
+        EventManager.TriggerEvent(Events.SHAKE, "10");
     }
     
     private void OnTypingCorrectly()

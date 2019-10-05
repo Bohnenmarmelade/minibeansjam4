@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utils;
 
-public static class Meds
-{
-
-   
-
+public static class Meds {
 
     public static string[] SUFFIX_EASY =  {
         "al", "el", "il", "ol", "ul",
@@ -44,8 +40,6 @@ public static class Meds
 
     public static string getMed(string difficulty){
         string medString = "";
-
-
 
         if (difficulty.Equals(Difficulty.EASY)){
             string prefix = Meds.EASY[Random.Range(0, Meds.EASY.Length)];
