@@ -13,13 +13,13 @@ public class GameStats : MonoBehaviour
     void OnEnable()
     {
         EventManager.StartListening(Events.TYPO, looseLife);
-        EventManager.StartListening(Events.WORD_SUCCESS, wordSuccess);
+        EventManager.StartListening(Events.BOTTLE_SUCCES, onBottleSuccess);
     }
 
     void OnDisable()
     {
         EventManager.StopListening(Events.TYPO, looseLife);
-        EventManager.StopListening(Events.WORD_SUCCESS, wordSuccess);
+        EventManager.StopListening(Events.BOTTLE_SUCCES, onBottleSuccess);
     }
 
     private void looseLife(string typoPayload) {
@@ -39,7 +39,7 @@ public class GameStats : MonoBehaviour
         }
     }
 
-    private void wordSuccess(string wordSuccessPayload) {
+    private void onBottleSuccess(string bottleSuccessPayload) {
         score += 1;
     }
 }
