@@ -13,18 +13,18 @@ public class GameStatsController : MonoBehaviour
 
     void OnEnable()
     {
-        EventManager.StartListening(Events.TYPO, looseLife);
-        EventManager.StartListening(Events.BOTTLE_SUCCES, onBottleSuccess);
+        EventManager.StartListening(Events.BOTTLE_FAILURE, loseLife);
+        EventManager.StartListening(Events.BOTTLE_SUCCESS, onBottleSuccess);
     }
 
     void OnDisable()
     {
-        EventManager.StopListening(Events.TYPO, looseLife);
-        EventManager.StopListening(Events.BOTTLE_SUCCES, onBottleSuccess);
+        EventManager.StopListening(Events.BOTTLE_FAILURE, loseLife);
+        EventManager.StopListening(Events.BOTTLE_SUCCESS, onBottleSuccess);
     }
 
-    private void looseLife(string typoPayload) {
-        if(currentLifes > 1){
+    private void loseLife(string typoPayload) {
+        if(currentLifes > 1) {
             currentLifes--;
         }else{
             highScoreList.Add(this.score);

@@ -40,7 +40,7 @@ public class LifeIndicator : MonoBehaviour
 
         initLifeBar();
 
-        EventManager.StartListening(Events.TYPO, loseLife);
+        EventManager.StartListening(Events.BOTTLE_FAILURE, loseLife);
         EventManager.StartListening(Events.GAME_OVER, stopListening);
 
 
@@ -59,7 +59,7 @@ public class LifeIndicator : MonoBehaviour
 
     private void stopListening(string _)
     {
-        EventManager.StopListening(Events.TYPO, loseLife);
+        EventManager.StopListening(Events.BOTTLE_FAILURE, loseLife);
     }
 
     public void initLifeBar()

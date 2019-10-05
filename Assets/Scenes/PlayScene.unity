@@ -982,7 +982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc0fe72cc602a04097dd162cd492a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bottlePrefab: {fileID: 9212400181381707348, guid: 6cc595165ed8b12499a5d596f8fe56dc,
+  bottlePrefab: {fileID: 6848773254661987401, guid: 6cc595165ed8b12499a5d596f8fe56dc,
     type: 3}
   textInput: {fileID: 674935670}
 --- !u!4 &1510293858
