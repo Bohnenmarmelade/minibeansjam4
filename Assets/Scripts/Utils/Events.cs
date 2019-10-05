@@ -6,4 +6,5 @@ public static class Events {
     public static string KEY_DOWN="keyDown";
     public static string TYPO="typo";
     public static string GAME_OVER="gameOver";
+    public static string WORD_SUCCESS="wordSuccess";
 };
