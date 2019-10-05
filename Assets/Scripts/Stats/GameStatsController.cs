@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Utils;
 
-public class GameStatsController : MonoBehaviour {
+public class GameStats : MonoBehaviour
+{
 
     public static int MAX_LIFES = 10;
     public int currentLifes = 10;
