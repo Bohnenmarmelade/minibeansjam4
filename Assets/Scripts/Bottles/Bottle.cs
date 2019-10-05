@@ -12,12 +12,11 @@ namespace Bottles
         public TypeableWord typeableWord;
 
         private FadingAnimation _fadingAnimation;
-        private BottleText _bottleText;
 
         private void Start()
         {
-            _bottleText = gameObject.GetComponent<BottleText>();
-            gameObject.GetComponent<FadingAnimation>().OnSpawn(() => _bottleText.SetTextFieldsContent());
+            gameObject.GetComponent<FadingAnimation>()
+                .OnSpawn(() => gameObject.GetComponent<BottleText>().SetTextFieldsContent());
 
             PositionText();
         }
