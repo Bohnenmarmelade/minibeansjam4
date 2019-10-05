@@ -10,12 +10,18 @@ namespace Bottles
 
         private FadingAnimation _fadingAnimation;
 
+        public Sprite purpleBottle;
+        public Sprite greenBottle;
+        public Sprite blueBottle;
+
         private void Start()
         {
             gameObject.GetComponent<FadingAnimation>()
                 .OnSpawn(() => gameObject.GetComponent<BottleText>().SetTextFieldsContent());
 
             PositionText();
+            
+            
         }
 
         private void PositionText()
@@ -33,9 +39,25 @@ namespace Bottles
             firstLetter = typeableWord.fullWord[0];
         }
 
-        public void InitWordByDifficulty(string difficulty)
+        public void Init(string difficulty)
         {
             SetWord(Meds.getMed(difficulty));
+
+            Sprite chosenSprite = null;
+            switch (Random.Range(0, 3))
+            {
+                case 0:
+                    chosenSprite = purpleBottle;
+                    break;
+                case 1:
+                    chosenSprite = greenBottle;
+                    break;
+                case 2:
+                    chosenSprite = blueBottle;
+                    break;
+            };
+
+            gameObject.GetComponent<SpriteRenderer>().sprite = chosenSprite;
         }
     }
 }

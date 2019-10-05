@@ -287,6 +287,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstLetter: 0
+  purpleBottle: {fileID: 21300000, guid: 32e00978a2e1ac346a909606653c629a, type: 3}
+  greenBottle: {fileID: 21300000, guid: 2560e0b0a7b9ee141882ff68158d4ff5, type: 3}
+  blueBottle: {fileID: 21300000, guid: e107f484a68c73f4098d219fd8482d63, type: 3}
 --- !u!114 &4002252546827742885
 MonoBehaviour:
   m_ObjectHideFlags: 0

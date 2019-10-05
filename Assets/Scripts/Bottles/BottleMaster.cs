@@ -52,7 +52,7 @@ namespace Bottles
         private void SpawnBottle()
         {
             GameObject bottle = Instantiate(bottlePrefab, GetPosition(), Quaternion.identity);
-            bottle.GetComponent<Bottle>().InitWordByDifficulty(_currentDifficulty);
+            bottle.GetComponent<Bottle>().Init(_currentDifficulty);
             bottle.transform.parent = gameObject.transform;
             RegisterBottle(bottle);
         }
