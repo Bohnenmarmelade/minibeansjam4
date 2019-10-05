@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Utils;
 
-public class GameStats : MonoBehaviour
+public class GameStatsController : MonoBehaviour
 {
 
     public static int MAX_LIFES = 10;
