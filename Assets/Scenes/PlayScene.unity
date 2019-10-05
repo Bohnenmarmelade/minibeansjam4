@@ -643,6 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyPress: {fileID: 8300000, guid: 4380466f8958143fda1177a8e7456ad5, type: 3}
+  moveBottle: {fileID: 8300000, guid: 10d1dae744f25efc4bb24b5d60636200, type: 3}
 --- !u!4 &905010437
 Transform:
   m_ObjectHideFlags: 0
