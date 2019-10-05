@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Utils;
+using System.Collections.Generic;
 
 public class GameStatsController : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class GameStatsController : MonoBehaviour
     public static int MAX_LIFES = 10;
     public int currentLifes = 10;
     public int score = 0;
+    public List<int> highScoreList = new List<int>();
 
 
     void OnEnable()
@@ -25,7 +27,8 @@ public class GameStatsController : MonoBehaviour
         if(currentLifes > 1){
             currentLifes--;
         }else{
-            EventManager.TriggerEvent(Events.GAME_OVER, "" + score);
+            highScoreList.Add(this.score);
+            EventManager.TriggerEvent(Events.GAME_OVER, "" + this.score);
         }
 
         Debug.Log("looseLife");

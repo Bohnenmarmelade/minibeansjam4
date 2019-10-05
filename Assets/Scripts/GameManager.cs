@@ -22,8 +22,6 @@ public class GameManager : MonoBehaviour
     }
     private void gameOver(string gameOverPayload) {
         Debug.Log("GameOver Dude!!!");
-        SceneManager.LoadScene("ScoreScene");
-        //GameObject[] test = GameObject.FindGameObjectsWithTag("ScoreText");
-        //Debug.Log("Found :" + test[0].ToString());
+        SceneManager.LoadScene("GameOverScene");
     }
 }
