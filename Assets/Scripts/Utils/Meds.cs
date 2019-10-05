@@ -30,7 +30,7 @@ public static class Meds {
 
     public static string[] MEDIUM =  {
         "Abroloz","Bananoz","Cholister", "Banana",
-        "Lamsal", "Aspiz", "Ildiko"
+        "Lamsal", "Aspiz", "Ildiko", "Noxi"
     };
 
     public static string[] HARD =  {
