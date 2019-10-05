@@ -21,6 +21,8 @@ namespace Bottles
         private Scheduler _difficultyScheduler;
 
         private float _zOffset;
+        
+        public Material outlineMaterial;
 
         private void Awake()
         {
@@ -128,6 +130,8 @@ namespace Bottles
             var textInputTypeableWord = bottle.gameObject.GetComponent<Bottle>().typeableWord;
             textInputTypeableWord.type(typedKey[0]);
             textInput.TypeableWord = textInputTypeableWord;
+
+            bottle.GetComponent<SpriteRenderer>().material = outlineMaterial;
         }
 
         bool TextInputIsLocked()
