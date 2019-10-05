@@ -140,3 +140,6 @@ $RECYCLE.BIN/
 
 # Intellij Rider
 .idea/
+
+# TestBuilds
+.build/
