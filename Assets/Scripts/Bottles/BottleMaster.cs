@@ -18,10 +18,10 @@ namespace Bottles
         private void Awake()
         {
             _positions = new List<Vector3>();
-            _positions.Add(new Vector3(0.68f, -3.853651f, 2.792969f));
-            _positions.Add(new Vector3(-0.68f, -3.853651f, 2.792969f));
-            _positions.Add(new Vector3(-1.06f, -3.853651f, 2.792969f));
-            _positions.Add(new Vector3(1.06f, -3.853651f, 2.792969f));
+            _positions.Add(new Vector3(0f, 0f, 2.792969f));
+            _positions.Add(new Vector3(0f, 0f, 2.792969f));
+            _positions.Add(new Vector3(0f, 0f, 2.792969f));
+            _positions.Add(new Vector3(0f, 0f, 2.792969f));
 
             _bottles = new Dictionary<string, GameObject>();
 
