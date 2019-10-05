@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     void OnEnable()
     {
         EventManager.StartListening(Events.GAME_OVER, gameOver);
-        SceneManager.LoadScene("PlayScene");
+        EventManager.StartListening(Events.START_GAME, onStartGame);
+        SceneManager.LoadScene("TitleScreen");
     }
 
     void OnDisable()
@@ -16,6 +17,9 @@ public class GameManager : MonoBehaviour
         EventManager.StopListening(Events.GAME_OVER, gameOver);
     }
 
+    private void onStartGame(string eventPayload){
+        SceneManager.LoadScene("PlayScene");
+    }
     private void gameOver(string gameOverPayload) {
         Debug.Log("GameOver Dude!!!");
         SceneManager.LoadScene("ScoreScene");
