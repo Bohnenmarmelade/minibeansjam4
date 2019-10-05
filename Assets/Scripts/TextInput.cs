@@ -4,51 +4,50 @@ using UnityEngine.UI;
 public class TextInput : MonoBehaviour
 {
     private TypeableWord _typeableWord;
+
+    public TypeableWord TypeableWord
+    {
+        get => _typeableWord;
+        set
+        {
+            _typeableWord = value;
+            SetTextFieldsContent();
+            EventManager.StartListening(Events.KEY_DOWN, OnType);
+        }
+    }
+
     public Text textFieldTyped;
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-        EventManager.StartListening(Events.KEY_DOWN, OnType);
-        newWord();
-    }
-
-    private void newWord()
-    {
-        _typeableWord = new TypeableWord(Meds.getMed(Difficulty.EASY).ToUpper());
-        textFieldTyped.text = "<color=#D3D3D3>" + _typeableWord.toBeTyped + "</color>";
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-    }
 
     private void OnType(string keyDownPayload)
     {
         char typedCharacter = keyDownPayload[0];
-        Debug.Log("TYPED CHAR");
         if (_typeableWord.type(typedCharacter))
             OnTypingCorrectly();
         else
         {
-            OnTypingError();
+            OnTypingError(typedCharacter);
         }
     }
 
-    private void OnTypingError()
+    private void OnTypingError(char typo)
     {
-        EventManager.TriggerEvent(Events.TYPO);
+        EventManager.TriggerEvent(Events.TYPO, typo.ToString());
     }
     
     private void OnTypingCorrectly()
     {
         if (_typeableWord.toBeTyped.Length == 0)
         {
-            //EventManager.StopListening(Events.KEY_DOWN, OnType);
-            newWord();
+            EventManager.StopListening(Events.KEY_DOWN, OnType);
+            EventManager.TriggerEvent(Events.BOTTLE_SUCCES, _typeableWord.fullWord);
         }
-            
-        textFieldTyped.text = "<b>" + _typeableWord.succesfullyTyped + "</b>" + "<color=#D3D3D3>" + _typeableWord.toBeTyped+ "</color>";
+
+        SetTextFieldsContent();
+    }
+
+    private void SetTextFieldsContent()
+    {
+        textFieldTyped.text = "<b>" + _typeableWord.succesfullyTyped + "</b>" + "<color=#D3D3D3>" +
+               _typeableWord.toBeTyped + "</color>";
     }
 }
