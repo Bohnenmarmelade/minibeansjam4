@@ -55,6 +55,7 @@ namespace Bottles
             bottle.GetComponent<Bottle>().InitWordByDifficulty(_currentDifficulty);
             bottle.transform.parent = gameObject.transform;
             RegisterBottle(bottle);
+            EventManager.TriggerEvent(Events.BOTTLE_SPAWN, "");
         }
 
         void DeregisterBottle(string typeableWord)

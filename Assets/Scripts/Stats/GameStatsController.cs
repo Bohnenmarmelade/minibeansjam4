@@ -6,7 +6,9 @@ public class GameStatsController : MonoBehaviour
 {
 
     public static int MAX_LIFES = 10;
+    public static int MAX_BOTTLES = 7;
     public int currentLifes = 10;
+    public int currentBottles = 0;
     public int score = 0;
     public List<int> highScoreList = new List<int>();
 
@@ -16,6 +18,7 @@ public class GameStatsController : MonoBehaviour
         EventManager.StartListening(Events.TYPO, looseLife);
         EventManager.StartListening(Events.BOTTLE_SUCCES, onBottleSuccess);
         EventManager.StartListening(Events.START_GAME, onGameStart);
+        EventManager.StartListening(Events.BOTTLE_SPAWN, onBottleSpawn);
     }
 
     void OnDisable()
@@ -23,6 +26,7 @@ public class GameStatsController : MonoBehaviour
         EventManager.StopListening(Events.TYPO, looseLife);
         EventManager.StopListening(Events.BOTTLE_SUCCES, onBottleSuccess);
         EventManager.StopListening(Events.START_GAME, onGameStart);
+        EventManager.StopListening(Events.BOTTLE_SPAWN, onBottleSpawn);
     }
 
     private void looseLife(string typoPayload) {
@@ -45,10 +49,18 @@ public class GameStatsController : MonoBehaviour
 
     private void onBottleSuccess(string bottleSuccessPayload) {
         score += 1;
+        this.currentBottles--;
     }
     
     private void onGameStart(string eventPayload) {
         this.score = 0;
         this.currentLifes = 10;
+    }
+
+    private void onBottleSpawn(string eventPayload) {
+        this.currentBottles++;
+        if (this.currentBottles > MAX_BOTTLES) {
+            EventManager.TriggerEvent(Events.GAME_OVER, "bottles");
+        }
     }
 }

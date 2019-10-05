@@ -7,6 +7,7 @@ public static class Events {
     public const string TYPO="typo";
     public const string GAME_OVER="gameOver";
     public const string BOTTLE_SUCCES="bottleSuccess";
+    public const string BOTTLE_SPAWN="bottleSpawn";
     public const string SHAKE = "shake";
     public const string INCREASE_DIFFICULTY = "increaseDifficulty";
     public const string START_GAME = "startGame";
