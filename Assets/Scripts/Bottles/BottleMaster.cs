@@ -85,7 +85,6 @@ namespace Bottles
                 }
             }
 
-            EventManager.TriggerEvent(Events.TYPO);
         }
 
         void SetAndUpdateActiveWord(GameObject bottle, string typedKey)
