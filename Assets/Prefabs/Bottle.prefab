@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 1381791428842641865}
   - component: {fileID: 930395859698011932}
   - component: {fileID: 8708671427270947716}
+  - component: {fileID: 1375477440}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -176,6 +177,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1375477440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6556492626652052318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2edf5b7a32dfa240a66dc49e9e6eede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6848773254661987401
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,6 +201,7 @@ GameObject:
   - component: {fileID: 2400661995569790056}
   - component: {fileID: 513893919150696502}
   - component: {fileID: 1682205126028362936}
+  - component: {fileID: -7197948818221524881}
   m_Layer: 0
   m_Name: Bottle
   m_TagString: Untagged
@@ -287,3 +301,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textField: {fileID: 8068010488326263680}
+--- !u!114 &-7197948818221524881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848773254661987401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 941223729566108448332a16e02d7b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
