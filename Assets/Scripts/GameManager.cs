@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     void OnEnable()
     {
         EventManager.StartListening(Events.GAME_OVER, gameOver);
+        SceneManager.LoadScene("PlayScene");
     }
 
     void OnDisable()
