@@ -15,12 +15,14 @@ public class GameStatsController : MonoBehaviour
     {
         EventManager.StartListening(Events.TYPO, looseLife);
         EventManager.StartListening(Events.BOTTLE_SUCCES, onBottleSuccess);
+        EventManager.StartListening(Events.START_GAME, onGameStart);
     }
 
     void OnDisable()
     {
         EventManager.StopListening(Events.TYPO, looseLife);
         EventManager.StopListening(Events.BOTTLE_SUCCES, onBottleSuccess);
+        EventManager.StopListening(Events.START_GAME, onGameStart);
     }
 
     private void looseLife(string typoPayload) {
@@ -43,5 +45,10 @@ public class GameStatsController : MonoBehaviour
 
     private void onBottleSuccess(string bottleSuccessPayload) {
         score += 1;
+    }
+    
+    private void onGameStart(string eventPayload) {
+        this.score = 0;
+        this.currentLifes = 10;
     }
 }

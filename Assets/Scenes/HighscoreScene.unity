@@ -131,7 +131,6 @@ GameObject:
   - component: {fileID: 409349459}
   - component: {fileID: 409349463}
   - component: {fileID: 409349462}
-  - component: {fileID: 409349461}
   - component: {fileID: 409349460}
   m_Layer: 5
   m_Name: HighScore
@@ -157,7 +156,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 11, y: 188.6}
+  m_SizeDelta: {x: 1201.5, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &409349460
 MonoBehaviour:
@@ -171,19 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fd033362acc0a6dfb7c5bbb20e9d32e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &409349461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 409349458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d6fe7c79c37cd870898fbb78c317145, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 409349462}
+  highScoreText: {fileID: 409349462}
 --- !u!114 &409349462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +202,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Testy
+  m_Text: Rank - Score
 --- !u!222 &409349463
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -223,7 +210,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 409349458}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!1 &738242141
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +468,7 @@ GameObject:
   - component: {fileID: 1907987489}
   - component: {fileID: 1907987488}
   - component: {fileID: 1907987487}
+  - component: {fileID: 1907987492}
   m_Layer: 5
   m_Name: HighscoreCanvas
   m_TagString: MainCamera
@@ -580,3 +568,15 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1907987492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907987486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e32baf6394a885ca5767102ca85826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
