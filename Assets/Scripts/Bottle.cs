@@ -10,6 +10,7 @@ public class Bottle : MonoBehaviour
 
     private void SetWord(string word)
     {
+        Debug.Log($"Word is set: '${word}'");
         textInput.TypeableWord = new TypeableWord(word);
         firstLetter = textInput.TypeableWord.fullWord[0];
     }
