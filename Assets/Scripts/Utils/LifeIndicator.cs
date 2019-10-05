@@ -1,6 +1,7 @@
 ﻿using Utils;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class LifeIndicator : MonoBehaviour
 {
@@ -38,9 +39,9 @@ public class LifeIndicator : MonoBehaviour
         positionInWorldSpace = topLeft + heartPrefabSize/2;
         positionInWorldSpace.y -= marginTop;
 
-        initLifeBar();
+        StartCoroutine("initLifeBar");
 
-        EventManager.StartListening(Events.BOTTLE_FAILURE, loseLife);
+        EventManager.StartListening(Events.BOTTLE_FAILURE, LoseLife);
         EventManager.StartListening(Events.GAME_OVER, stopListening);
 
 
@@ -48,29 +49,30 @@ public class LifeIndicator : MonoBehaviour
         Debug.Log("Life Indicator is at: " + positionInWorldSpace.ToString());
     }
 
-    public void loseLife(string _)
+    public void LoseLife(string _)
     {
-        int lastIndex = currentLifes.Count;
         GameObject last = currentLifes[currentLifes.Count - 1];
 
-        Destroy(last);
+        last.GetComponent<Life>().DIE();
+        //Destroy(last);
         currentLifes.Remove(last);
     }
 
     private void stopListening(string _)
     {
-        EventManager.StopListening(Events.BOTTLE_FAILURE, loseLife);
+        EventManager.StopListening(Events.BOTTLE_FAILURE, LoseLife);
     }
 
-    public void initLifeBar()
+    IEnumerator initLifeBar()
     {
         Vector3 nextPos = positionInWorldSpace;
-        for(int i = 0; i < gameStatsController.currentLifes; i++)
+        for (int i = 0; i < gameStatsController.currentLifes; i++)
         {
             GameObject heart = Instantiate(heartPrefab, nextPos, Quaternion.identity);
             heart.transform.SetParent(canvas.transform, false);
             currentLifes.Add(heart);
-            nextPos.x += heart.GetComponent<RectTransform>().rect.width * heart.transform.localScale.x;
+            nextPos.x += heartPrefab.GetComponent<RectTransform>().rect.width * heartPrefab.transform.localScale.x;
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Bottles
             _bottles = new Dictionary<string, GameObject>();
 
             EventManager.StartListening(Events.KEY_DOWN, ActiveBottleFromKeyDown);
-            EventManager.StartListening(Events.BOTTLE_SUCCESS, DeregisterBottle);
+            EventManager.StartListening(Events.BOTTLE_SUCCESS, OnBottleSuccess);
             EventManager.StartListening(Events.BOTTLE_FAILURE, OnBottleFailure);
             EventManager.StartListening(Events.INCREASE_DIFFICULTY, payload => IncreaseDifficulty());
         }
@@ -41,7 +41,9 @@ namespace Bottles
 
         private void OnDisable()
         {
-            EventManager.StopListening(Events.BOTTLE_SUCCESS, DeregisterBottle);
+            EventManager.StopListening(Events.KEY_DOWN, ActiveBottleFromKeyDown);
+            EventManager.StopListening(Events.BOTTLE_SUCCESS, OnBottleSuccess);
+            EventManager.StopListening(Events.BOTTLE_FAILURE, OnBottleFailure);
             EventManager.StopListening(Events.INCREASE_DIFFICULTY, payload => IncreaseDifficulty());
         }
 
@@ -57,19 +59,35 @@ namespace Bottles
             bottle.GetComponent<Bottle>().Init(_currentDifficulty, PunishmentType.GetRandomPunishment());
             bottle.transform.parent = gameObject.transform;
             RegisterBottle(bottle);
+            EventManager.TriggerEvent(Events.BOTTLE_SPAWN, "");
         }
 
         void OnBottleFailure(string payload)
         {
-            if (_bottles.ContainsKey(payload)) DeregisterBottle(payload);
+            if (_bottles.ContainsKey(payload))
+            {
+                DeregisterBottle(payload);
+
+                if (payload.Equals(textInput.TypeableWord.fullWord))
+                {
+                    textInput.TypeableWord = new TypeableWord("");
+                }
+            }
+        }
+
+        void OnBottleSuccess(string typeableWord)
+        {
+            DeregisterBottle(typeableWord);
+            
+            textInput.TypeableWord = new TypeableWord("");
         }
         
         void DeregisterBottle(string typeableWord)
         {
             Destroy(_bottles[typeableWord]);
             _bottles.Remove(typeableWord);
-
-            textInput.TypeableWord = new TypeableWord("");
+            
+            
         }
 
         void RegisterBottle(GameObject bottle)
