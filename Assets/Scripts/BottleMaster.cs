@@ -6,7 +6,7 @@ using Utils;
 public class BottleMaster : MonoBehaviour
 {
     public GameObject bottlePrefab;
-    private Dictionary<string, Tuple<Vector3, GameObject>> _bottles;
+    private Dictionary<string, GameObject> _bottles;
 
     private List<Vector3> _positions;
 
@@ -20,7 +20,7 @@ public class BottleMaster : MonoBehaviour
         _positions.Add(new Vector3(-1.06f, 0.68f, 2.792969f));
         _positions.Add(new Vector3(1.06f, -0.68f, 2.792969f));
         
-        _bottles = new Dictionary<string, Tuple<Vector3, GameObject>>();
+        _bottles = new Dictionary<string, GameObject>();
 
         SpawnBottle();
         
@@ -41,8 +41,8 @@ public class BottleMaster : MonoBehaviour
     {
         EventManager.TriggerEvent(Events.INCREASE_DIFFICULTY);
         
-        _positions.Add(_bottles[typeableWord].Item1);
-        Destroy(_bottles[typeableWord].Item2);
+        _positions.Add(_bottles[typeableWord].transform.position);
+        Destroy(_bottles[typeableWord]);
         
         _bottles.Remove(typeableWord);
         SpawnBottle();
@@ -51,8 +51,7 @@ public class BottleMaster : MonoBehaviour
     void RegisterBottle(GameObject bottle)
     {
         var position = _positions[0];
-        _bottles[bottle.gameObject.GetComponentInChildren<TextInput>().TypeableWord.fullWord] =
-            new Tuple<Vector3, GameObject>(position, bottle);
+        _bottles[bottle.gameObject.GetComponentInChildren<TextInput>().TypeableWord.fullWord] = bottle;
         _positions.RemoveAt(0);
     }
 
