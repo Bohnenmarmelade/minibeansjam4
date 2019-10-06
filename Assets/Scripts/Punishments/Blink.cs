@@ -25,6 +25,7 @@ public class Blink : MonoBehaviour
         startPosLowerBox = lowerBox.position;
         rand1 = Random.Range(1, 10);
         rand2 = Random.Range(1, 10);
+        Destroy(gameObject, 3f);
     }
 
     protected void Update()
