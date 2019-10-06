@@ -68,6 +68,9 @@ namespace Bottles
         {
             if (_bottles.ContainsKey(payload))
             {
+                Bottle bottle = _bottles[payload].GetComponent<Bottle>();
+                bottle.StartPunishment();
+
                 DeregisterBottle(payload);
 
                 if (payload.Equals(textInput.TypeableWord.fullWord))
