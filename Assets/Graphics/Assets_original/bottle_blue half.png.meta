@@ -1,9 +1,13 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
 guid: feae8789a28595748b1c42142831ad5f
 =======
 guid: 7f186b92380354a84bdee0fbe0c879a1
 >>>>>>> 1362428e6b444fca50beaba73bfda248384bf03e
+=======
+guid: 7645fc963786b496ca99d7a3be1ab1a8
+>>>>>>> add blink effekt
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
