@@ -13,28 +13,61 @@ public static class Meds {
     public static string[] SUFFIX_MEDIUM = {
         "astin",  "azin", "azol",
         "cain", "cillin", 
-        "dipin", "fibrat", "kiren", "mab",
-        "nitrat",  "pramin", 
-        "pril", "rein"
+        "dipin", 
+        "fibrat", 
+        "kiren", 
+        "mab",
+        "nitrat",  
+        "pramin", "pril", 
+        "rein"
     };
 
     public static string[] SUFFIX_HARD = {
-        "azepam", "coxib", "cyclin","floxacin",
-        "mycin", "oxetin", "sartan", "xetin",
-        "zepam", "prazol"
+        "azepam", 
+        "coxib", "cyclin",
+        "floxacin",
+        "mycin", 
+        "oxetin",
+        "prazol", 
+        "sartan", 
+        "xetin",
+        "zepam" 
     };
 
     public static string[] EASY =  {
-        "Riz","Param","Gun","Ber","Maz","Frank","otto"
+        "As",
+        "Ber",
+        "Gun",
+        "Jim",
+        "Luca",
+        "Maz",
+        "Frank",
+        "Otto", 
+        "Param",
+        "Riz"
     };
 
     public static string[] MEDIUM =  {
-        "Abroloz","Bananoz","Cholister", "Banana",
-        "Lamsal", "Aspiz", "Ildiko", "Noxi"
+        "Abroloz", "Aspiz", "Adrian",
+        "Bananoz", "Banana", 
+        "Cholister",
+        "Lamsal",  
+        "Ildiko", 
+        "Noxi", 
+        "Marco", 
+        "Perxo",
+        "Sergej",
+        "Thiolko"
     };
 
     public static string[] HARD =  {
-        "Adrianotez","Macrogolcetylstear","Xenomorpho"
+        "Adrianotez",
+        "Diazonium",
+        "Chloroduden",
+        "Macrogolcetylstear", 
+        "Mathias",
+        "Trichlorana",
+        "Xenomorpho"  
     };
 
 

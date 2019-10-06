@@ -60,25 +60,9 @@ namespace Bottles
         {   
             InitWord(currentDifficulty, currentFirstLetters);
 
-            Sprite chosenSprite;
-            switch (punishmentType)
-            {
-                default:
-                    chosenSprite = greenBottle;
-                    _punishment = poisonPunishment;
-                    break;
-                case PunishmentType.SHAKE:
-                    chosenSprite = purpleBottle;
-                    _punishment = shakePunishment;
-                    break;
-                case PunishmentType.SLEEP:
-                    chosenSprite = blueBottle;
-                    _punishment = sleepPunishment;
-                    break;
-            }
-            gameObject.GetComponent<SpriteRenderer>().sprite = chosenSprite;
+            InitPunishmentAndSprite(punishmentType);
             
-            RegisterColliderFromSprite(chosenSprite);
+            IntColliderFromSprite();
         }
 
         private void InitWord(string currentDifficulty, List<char> currentFirstLetters)
@@ -96,8 +80,30 @@ namespace Bottles
             SetWord(newWord);
         }
 
-        private void RegisterColliderFromSprite(Sprite sprite)
+        private void InitPunishmentAndSprite(string punishmentType)
         {
+            Sprite chosenSprite;
+            switch (punishmentType)
+            {
+                default:
+                    chosenSprite = greenBottle;
+                    _punishment = poisonPunishment;
+                    break;
+                case PunishmentType.SHAKE:
+                    chosenSprite = purpleBottle;
+                    _punishment = shakePunishment;
+                    break;
+                case PunishmentType.SLEEP:
+                    chosenSprite = blueBottle;
+                    _punishment = sleepPunishment;
+                    break;
+            }
+            gameObject.GetComponent<SpriteRenderer>().sprite = chosenSprite;
+        }
+        
+        private void IntColliderFromSprite()
+        {
+            Sprite sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
             BoxCollider2D bo = gameObject.AddComponent<BoxCollider2D>();
             bo.isTrigger = true;
             bo.size = new Vector2(
