@@ -41,10 +41,9 @@ public class LifeIndicator : MonoBehaviour
 
         StartCoroutine("initLifeBar");
 
-        EventManager.StartListening(Events.BOTTLE_FAILURE, LoseLife);
+        EventManager.StartListening(Events.LOSE_LIFE, LoseLife);
         EventManager.StartListening(Events.GAME_OVER, stopListening);
-
-
+        
         Debug.Log("Top Left Corner is at: " + topLeft.ToString());
         Debug.Log("Life Indicator is at: " + positionInWorldSpace.ToString());
     }

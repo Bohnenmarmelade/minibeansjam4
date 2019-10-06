@@ -13,7 +13,7 @@ namespace Utils
                 char key = Input.inputString.ToLower()[0];
                 if (Char.IsLetter(key))
                 {
-                    Debug.Log("triggerKey " + Input.inputString);
+                    // Debug.Log("triggerKey " + Input.inputString);
                     EventManager.TriggerEvent(Events.KEY_DOWN, key.ToString()); 
                 }
             }

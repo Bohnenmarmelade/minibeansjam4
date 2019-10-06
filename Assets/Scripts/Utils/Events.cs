@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public static class Events
+﻿public static class Events
 {
     public const string BOTTLE_SUCCESS = "bottleSuccess";
     public const string BOTTLE_FAILURE = "bottleFailure";
+    public const string LOSE_LIFE = "loseLife";
     public const string KEY_DOWN = "keyDown";
     public const string GAME_OVER = "gameOver";
     public const string BOTTLE_SPAWN="bottleSpawn";

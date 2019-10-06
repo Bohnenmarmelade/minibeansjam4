@@ -10,6 +10,7 @@ namespace Bottles
         public GameObject bottlePrefab;
         public TextInput textInput;
 
+        private int _maxCountBottles = 100;
         private Dictionary<string, GameObject> _bottles;
 
         private string _currentDifficulty = Difficulty.EASY;
@@ -30,7 +31,7 @@ namespace Bottles
         {
             _bottles = new Dictionary<string, GameObject>();
 
-            EventManager.StartListening(Events.KEY_DOWN, ActiveBottleFromKeyDown);
+            EventManager.StartListening(Events.KEY_DOWN, ActivateBottleFromKeyDown);
             EventManager.StartListening(Events.BOTTLE_SUCCESS, OnBottleSuccess);
             EventManager.StartListening(Events.BOTTLE_FAILURE, OnBottleFailure);
             EventManager.StartListening(Events.INCREASE_DIFFICULTY, payload => IncreaseDifficulty());
@@ -45,7 +46,7 @@ namespace Bottles
 
         private void OnDisable()
         {
-            EventManager.StopListening(Events.KEY_DOWN, ActiveBottleFromKeyDown);
+            EventManager.StopListening(Events.KEY_DOWN, ActivateBottleFromKeyDown);
             EventManager.StopListening(Events.BOTTLE_SUCCESS, OnBottleSuccess);
             EventManager.StopListening(Events.BOTTLE_FAILURE, OnBottleFailure);
             EventManager.StopListening(Events.INCREASE_DIFFICULTY, payload => IncreaseDifficulty());
@@ -63,19 +64,19 @@ namespace Bottles
             bottle.GetComponent<Bottle>().Init(_currentDifficulty, PunishmentType.GetRandomPunishment(), currentFirstLetters);
             bottle.transform.parent = gameObject.transform;
             RegisterBottle(bottle);
-            EventManager.TriggerEvent(Events.BOTTLE_SPAWN, "");
+            EventManager.TriggerEvent(Events.BOTTLE_SPAWN);
         }
 
-        void OnBottleFailure(string payload)
+        void OnBottleFailure(string fullFailedWord)
         {
-            if (_bottles.ContainsKey(payload))
+            if (_bottles.ContainsKey(fullFailedWord))
             {
-                Bottle bottle = _bottles[payload].GetComponent<Bottle>();
+                Bottle bottle = _bottles[fullFailedWord].GetComponent<Bottle>();
                 bottle.StartPunishment();
 
-                DeregisterBottle(payload);
+                DeregisterBottle(fullFailedWord);
 
-                if (payload.Equals(textInput.TypeableWord.fullWord))
+                if (fullFailedWord.Equals(textInput.TypeableWord.fullWord))
                 {
                     textInput.TypeableWord = new TypeableWord("");
                 }
@@ -85,7 +86,6 @@ namespace Bottles
         void OnBottleSuccess(string typeableWord)
         {
             DeregisterBottle(typeableWord);
-            
             textInput.TypeableWord = new TypeableWord("");
         }
         
@@ -94,11 +94,11 @@ namespace Bottles
             Destroy(_bottles[typeableWord]);
             _bottles.Remove(typeableWord);
             currentFirstLetters.Remove(typeableWord[0]);
-            
         }
 
         void RegisterBottle(GameObject bottle)
         {
+            if (_bottles.Count == _maxCountBottles) EventManager.TriggerEvent(Events.GAME_OVER);
             _bottles[bottle.gameObject.GetComponent<Bottle>().typeableWord.fullWord] = bottle;
         }
 
@@ -108,7 +108,7 @@ namespace Bottles
             Debug.Log($"Increased difficulty to '{_currentDifficulty}'");
         }
 
-        void ActiveBottleFromKeyDown(string typedKey)
+        void ActivateBottleFromKeyDown(string typedKey)
         {
             if (TextInputIsLocked()) return;
 
@@ -120,8 +120,6 @@ namespace Bottles
                     return;
                 }
             }
-            
-            EventManager.TriggerEvent(Events.BOTTLE_FAILURE);
         }
 
         bool BottleCanBeActivated(string typedKey, string bottleEntryKey, GameObject bottleEntryValue)
@@ -134,6 +132,7 @@ namespace Bottles
         {
             var textInputTypeableWord = bottle.gameObject.GetComponent<Bottle>().typeableWord;
             textInputTypeableWord.type(typedKey[0]);
+            
             textInput.TypeableWord = textInputTypeableWord;
 
             bottle.GetComponent<SpriteRenderer>().material = outlineMaterial;
