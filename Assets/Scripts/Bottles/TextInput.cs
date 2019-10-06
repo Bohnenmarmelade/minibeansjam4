@@ -15,10 +15,14 @@ namespace Bottles
             {
                 _typeableWord = value;
                 SetTextFieldsContent();
-                
+
                 if (!_typeableWord.fullWord.Equals(""))
                 {
                     EventManager.StartListening(Events.KEY_DOWN, OnType);
+                }
+                else
+                {
+                    EventManager.StopListening(Events.KEY_DOWN, OnType);
                 }
             }
         }
@@ -32,14 +36,12 @@ namespace Bottles
                 OnTypingCorrectly();
             else
             {
-                Debug.Log($"FAYUUUUL {typedCharacter}, {_typeableWord.fullWord}, {_typeableWord.toBeTyped}");
                 OnTypingError(typedCharacter);
             }
         }
 
         private void OnTypingError(char typo)
         {
-            EventManager.StopListening(Events.KEY_DOWN, OnType);
             EventManager.TriggerEvent(Events.BOTTLE_FAILURE, _typeableWord.fullWord);
         }
 
@@ -47,7 +49,6 @@ namespace Bottles
         {
             if (_typeableWord.toBeTyped.Length == 0)
             {
-                EventManager.StopListening(Events.KEY_DOWN, OnType);
                 EventManager.TriggerEvent(Events.BOTTLE_SUCCESS, _typeableWord.fullWord);
             }
 
