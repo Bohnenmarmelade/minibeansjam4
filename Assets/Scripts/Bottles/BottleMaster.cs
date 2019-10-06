@@ -130,8 +130,10 @@ namespace Bottles
 
         void SetAndUpdateActiveWord(GameObject bottle, string typedKey)
         {
-            var textInputTypeableWord = bottle.gameObject.GetComponent<Bottle>().typeableWord;
+            Bottle bottleComponent = bottle.gameObject.GetComponent<Bottle>();
+            var textInputTypeableWord = bottleComponent.typeableWord;
             textInputTypeableWord.type(typedKey[0]);
+            
             
             textInput.TypeableWord = textInputTypeableWord;
 

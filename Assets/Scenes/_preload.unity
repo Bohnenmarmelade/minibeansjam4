@@ -154,7 +154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLifes: 10
-  currentBottles: 0
   score: 0
   highScoreList: 
 --- !u!114 &468644110

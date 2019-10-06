@@ -9,6 +9,7 @@ namespace Bottles
     public class Bottle : MonoBehaviour
     {
         public TypeableWord typeableWord;
+        public string punishmentType;
 
         private FadingAnimation _fadingAnimation;
         private bool _willColideWithAnotherBottle;
@@ -82,6 +83,8 @@ namespace Bottles
 
         private void InitPunishmentAndSprite(string punishmentType)
         {
+            this.punishmentType = punishmentType;
+            
             Sprite chosenSprite;
             switch (punishmentType)
             {
