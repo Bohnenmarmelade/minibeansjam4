@@ -231,7 +231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 307.19995, y: -100.54998}
+  m_AnchoredPosition: {x: -304, y: -87}
   m_SizeDelta: {x: 291.2, y: 31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &191586271
@@ -265,7 +265,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Ildiko Peter
+  m_Text: 'Ildiko Peter
+
+    twitch.tv/noxi_fortune
+
+    twitch.tv/katerrrrr'
 --- !u!222 &191586272
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -308,7 +312,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 307.2, y: -55.899994}
+  m_AnchoredPosition: {x: -303.99994, y: -42.350006}
   m_SizeDelta: {x: 291.2, y: 47.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &215136116
@@ -385,7 +389,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -313, y: -105}
+  m_AnchoredPosition: {x: 296, y: -86}
   m_SizeDelta: {x: 273.8, y: 39.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &233583588
@@ -558,7 +562,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -313, y: -55.899998}
+  m_AnchoredPosition: {x: 296.00003, y: -36.899994}
   m_SizeDelta: {x: 273.8, y: 47.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &378656634

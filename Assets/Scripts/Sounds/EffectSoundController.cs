@@ -10,6 +10,22 @@ public class EffectSoundController : MonoBehaviour
     public AudioClip breakBottle1;
     public AudioClip breakBottle2;
     public AudioClip breakBottle3;
+    public AudioClip mitP;
+    public AudioClip mitA;
+    public AudioClip ohMan;
+    public AudioClip oops;
+    public AudioClip passAuf1;
+    public AudioClip passAuf2;
+    public AudioClip verdammt;
+    public AudioClip versager;
+
+
+
+
+
+    public AudioClip ildiko;
+    public AudioClip poison;
+
 
     private AudioSource source;
 
@@ -18,6 +34,7 @@ public class EffectSoundController : MonoBehaviour
         EventManager.StartListening(Events.KEY_DOWN, onTyping);
         EventManager.StartListening(Events.BOTTLE_SUCCESS, onBottleSuccess);
         EventManager.StartListening(Events.BOTTLE_FAILURE, onBottleFailure);
+        EventManager.StartListening(Events.POISON, onPoison);
     }
 
     void OnDisable()
@@ -25,7 +42,7 @@ public class EffectSoundController : MonoBehaviour
         EventManager.StopListening(Events.KEY_DOWN, onTyping);
         EventManager.StopListening(Events.BOTTLE_SUCCESS, onBottleSuccess);
         EventManager.StopListening(Events.BOTTLE_FAILURE, onBottleFailure);
-
+        EventManager.StopListening(Events.POISON, onPoison);
     }
 
     void Awake () {
@@ -38,6 +55,11 @@ public class EffectSoundController : MonoBehaviour
 
     private void onBottleSuccess(string eventPayload) {
         source.PlayOneShot(moveBottle);
+        
+        if (eventPayload.ToLower().Contains("ildiko")) {
+            source.PlayOneShot(ildiko);
+        }
+    
     }
 
     private void onBottleFailure(string eventPayload) {
@@ -55,6 +77,46 @@ public class EffectSoundController : MonoBehaviour
                 randomBottleBreak = breakBottle3;
                 break;
          }
+
+        AudioClip shout = mitP;
+        int randomShout = (int) Random.Range(1f, 20f);
+
+        switch(randomShout) {
+            case 1:
+                source.PlayOneShot(mitP);
+                break;
+            case 2:
+                source.PlayOneShot(mitA);
+                break;
+            case 3:
+                source.PlayOneShot(ohMan);
+                break;
+            case 4:
+                source.PlayOneShot(oops);
+                break;
+            case 5:
+                source.PlayOneShot(passAuf1);
+                break;
+            case 6:
+                source.PlayOneShot(passAuf2);
+                break;
+            case 7:
+                source.PlayOneShot(verdammt);
+                break;
+            case 8:
+                source.PlayOneShot(versager);
+                break;
+            default:
+                break;
+        }
         source.PlayOneShot(randomBottleBreak);
+
+    }
+
+    private void onPoison(string eventPayload) {
+        int random = (int) Random.Range(1f, 5f);
+        if (random == 4) {
+            source.PlayOneShot(poison);
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public class PoisonPunishment : MonoBehaviour, IPunishment
 {
@@ -17,6 +18,7 @@ public class PoisonPunishment : MonoBehaviour, IPunishment
     public void startPunishment(Vector3 position)
     {
         Debug.Log("starting punishment");
+        EventManager.TriggerEvent(Events.POISON, "");
         Vector3 positionClouds = position;
         Vector3 positionSwirl = position;
         positionClouds.z -= 8;

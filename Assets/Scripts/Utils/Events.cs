@@ -11,4 +11,5 @@
     public const string SHOW_HIGHSCORE = "showHighscore";
     public const string SHOW_CREDITS = "showCredits";
     public const string SHOW_TITLE = "showTitle";
+    public const string POISON = "poison";
 };
