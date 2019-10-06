@@ -14,6 +14,6 @@ public class ScoreTextInput : MonoBehaviour
     {   
         //float test = GameObject.FindGameObjectsWithTag("_app")[0].transform.position[0];
         GameStatsController test = GameObject.FindGameObjectsWithTag("_app")[0].GetComponent(typeof(GameStatsController)) as GameStatsController;
-        scoreText.text = "<b>" + "Your Score is: " + test.score + "</b>";
+        scoreText.text = "<b>" + "Your Score is: " + test.score + " ml </b>";
     }
 }

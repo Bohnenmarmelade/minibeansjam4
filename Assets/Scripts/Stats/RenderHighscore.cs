@@ -22,7 +22,7 @@ public class RenderHighscore : MonoBehaviour
         Debug.Log("size is: " + size);
         for (int i = 0; i < MAX_SCORES && i < size; i++) {
             int spot = i+1;
-            highScoreText.text += "\n <b>" + spot + " - " + entries[i] + "</b>";
+            highScoreText.text += "\n <b>" + spot + " - " + entries[i] + " ml </b>";
         }
 
     }

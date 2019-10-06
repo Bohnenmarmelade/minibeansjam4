@@ -70,7 +70,7 @@ public class GameStatsController : MonoBehaviour
     }
 
     private void onBottleSuccess(string bottleSuccessPayload) {
-        score += 1;
+        score += 250;
     }
     
     private void onGameStart(string eventPayload) {
