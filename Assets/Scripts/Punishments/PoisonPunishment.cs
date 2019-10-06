@@ -16,6 +16,7 @@ public class PoisonPunishment : MonoBehaviour, IPunishment
 
     public void startPunishment(Vector3 position)
     {
+        Debug.Log("starting punishment");
         position.z -= 3;
         Instantiate(swirl, position, Quaternion.identity);
         Instantiate(clouds, position, Quaternion.identity);

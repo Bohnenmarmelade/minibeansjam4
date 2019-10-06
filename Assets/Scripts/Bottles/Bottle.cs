@@ -55,9 +55,19 @@ namespace Bottles
             firstLetter = typeableWord.fullWord[0];
         }
 
-        public void Init(string currentDifficulty, string punishmentType)
-        {
-            SetWord(Meds.getMed(currentDifficulty));
+        public void Init(string currentDifficulty, string punishmentType, List<char> currentFirstLetters)
+        {   
+            string newWord = "a";
+            bool wordIsValid = false;
+            while (!wordIsValid) {
+                newWord = Meds.getMed(currentDifficulty);
+                if (!currentFirstLetters.Contains(newWord[0])) {
+                    wordIsValid = true;
+                    currentFirstLetters.Add(newWord[0]);
+                }
+            }
+
+            SetWord(newWord);
 
             Sprite chosenSprite;
             switch (punishmentType)
@@ -84,6 +94,12 @@ namespace Bottles
 
             Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
             rb.isKinematic = true;
+        }
+
+        public void StartPunishment()
+        {
+            Debug.Log("[Bottle] try to start punishment");
+            punishment.GetComponent<IPunishment>().startPunishment(transform.position);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
