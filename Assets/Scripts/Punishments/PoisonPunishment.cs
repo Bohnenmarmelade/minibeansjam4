@@ -13,12 +13,12 @@ public class PoisonPunishment : MonoBehaviour, IPunishment
     {
         Debug.Log("startPunishment without a position is risky for PoisonPunishment, using: " + transform.position);
         startPunishment(transform.position);
-        EventManager.TriggerEvent(Events.POISON, "");
     }
 
     public void startPunishment(Vector3 position)
     {
         Debug.Log("starting punishment");
+        EventManager.TriggerEvent(Events.POISON, "");
         Vector3 positionClouds = position;
         Vector3 positionSwirl = position;
         positionClouds.z -= 8;

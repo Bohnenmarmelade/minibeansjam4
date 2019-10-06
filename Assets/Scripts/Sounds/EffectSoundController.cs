@@ -114,12 +114,8 @@ public class EffectSoundController : MonoBehaviour
     }
 
     private void onPoison(string eventPayload) {
-        Debug.Log("onpoison");
-        int random = (int) Random.Range(1f, 10f);
-        random = (int) 5f;
-
-        Debug.Log(random == 5);
-        if (random == 5) {
+        int random = (int) Random.Range(1f, 5f);
+        if (random == 4) {
             source.PlayOneShot(poison);
         }
     }
