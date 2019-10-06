@@ -27,6 +27,8 @@ namespace Bottles
         // Update is called once per frame
         void Update()
         {
+            if (IsSpawned()) return;
+            
             if (_passedTime < TimeToFade)
             {
                 _passedTime += Time.deltaTime;

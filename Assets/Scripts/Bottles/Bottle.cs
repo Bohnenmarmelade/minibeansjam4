@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Punishments;
 using UnityEngine;
 using Utils;
@@ -16,13 +15,22 @@ namespace Bottles
         public Sprite greenBottle;
         public Sprite purpleBottle;
         public Sprite blueBottle;
+        public Sprite greenBottleSuccess;
+        public Sprite purpleBottleSuccess;
+        public Sprite blueBottleSuccess;
 
         private GameObject _punishment;
         public GameObject poisonPunishment;
         public GameObject shakePunishment;
         public GameObject sleepPunishment;
 
+        private Scheduler _destroyScheduler;
+
         private List<Bottle> _collidingBottleCandidates = new List<Bottle>();
+        private Sprite _finishedSprite;
+        
+        public Material outlineMaterial;
+        private Material _defaultMaterial;
 
         private void Start()
         {
@@ -30,6 +38,28 @@ namespace Bottles
             _fadingAnimation.OnSpawn(OnFinishedSpawn);
 
             PositionText();
+
+            _defaultMaterial = gameObject.GetComponent<SpriteRenderer>().material;
+        }
+
+        private void Update()
+        {
+            _destroyScheduler?.Update(Time.deltaTime);
+        }
+
+        public void OnCompletion(bool wasSuccess)
+        {
+            if (wasSuccess)
+            {
+                _destroyScheduler = new Scheduler(0.5f, () => Destroy(gameObject));
+                gameObject.GetComponent<SpriteRenderer>().sprite = _finishedSprite;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
+            gameObject.GetComponent<SpriteRenderer>().material = _defaultMaterial;
         }
 
         private void OnFinishedSpawn()
@@ -54,6 +84,11 @@ namespace Bottles
         {
             Debug.Log($"Word is set: '{word}'");
             typeableWord = new TypeableWord(word);
+        }
+
+        public void Focus()
+        {
+            gameObject.GetComponent<SpriteRenderer>().material = outlineMaterial;
         }
 
         public void Init(string currentDifficulty, string punishmentType, List<char> currentFirstLetters)
@@ -87,14 +122,17 @@ namespace Bottles
             {
                 default:
                     chosenSprite = greenBottle;
+                    _finishedSprite = greenBottleSuccess;
                     _punishment = poisonPunishment;
                     break;
                 case PunishmentType.SHAKE:
                     chosenSprite = purpleBottle;
+                    _finishedSprite = purpleBottleSuccess;
                     _punishment = shakePunishment;
                     break;
                 case PunishmentType.SLEEP:
                     chosenSprite = blueBottle;
+                    _finishedSprite = blueBottleSuccess;
                     _punishment = sleepPunishment;
                     break;
             }
