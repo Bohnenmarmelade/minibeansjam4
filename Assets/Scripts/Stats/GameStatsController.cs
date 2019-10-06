@@ -55,6 +55,7 @@ public class GameStatsController : MonoBehaviour
     private void onGameStart(string eventPayload) {
         this.score = 0;
         this.currentLifes = 10;
+        this.currentBottles = 0;
     }
 
     private void onBottleSpawn(string eventPayload) {
