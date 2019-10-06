@@ -16,6 +16,8 @@ public class TypeableWord
 
     public bool type(char typedCharacter)
     {
+        if (toBeTyped.Equals("")) return true;
+        
         char character = Char.ToLower(typedCharacter);
         if (toBeTyped.ToLower()[0].Equals(character))
         {

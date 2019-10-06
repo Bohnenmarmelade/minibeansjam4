@@ -38,9 +38,8 @@ namespace Bottles
         private void OnTypingError(char typo)
         {
             EventManager.TriggerEvent(Events.BOTTLE_FAILURE, typo.ToString());
-            EventManager.TriggerEvent(Events.SHAKE, "10");
         }
-    
+
         private void OnTypingCorrectly()
         {
             if (_typeableWord.toBeTyped.Length == 0)

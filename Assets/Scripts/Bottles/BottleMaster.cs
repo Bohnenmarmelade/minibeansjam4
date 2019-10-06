@@ -10,6 +10,7 @@ namespace Bottles
         public GameObject bottlePrefab;
         public TextInput textInput;
 
+        private int _maxCountBottles = 100;
         private Dictionary<string, GameObject> _bottles;
 
         private string _currentDifficulty = Difficulty.EASY;
@@ -61,7 +62,7 @@ namespace Bottles
             bottle.GetComponent<Bottle>().Init(_currentDifficulty, PunishmentType.GetRandomPunishment());
             bottle.transform.parent = gameObject.transform;
             RegisterBottle(bottle);
-            EventManager.TriggerEvent(Events.BOTTLE_SPAWN, "");
+            EventManager.TriggerEvent(Events.BOTTLE_SPAWN);
         }
 
         void OnBottleFailure(string payload)
@@ -94,6 +95,7 @@ namespace Bottles
 
         void RegisterBottle(GameObject bottle)
         {
+            if (_bottles.Count == _maxCountBottles) EventManager.TriggerEvent(Events.GAME_OVER);
             _bottles[bottle.gameObject.GetComponent<Bottle>().typeableWord.fullWord] = bottle;
         }
 
@@ -115,8 +117,6 @@ namespace Bottles
                     return;
                 }
             }
-            
-            EventManager.TriggerEvent(Events.BOTTLE_FAILURE);
         }
 
         bool BottleCanBeActivated(string typedKey, string bottleEntryKey, GameObject bottleEntryValue)

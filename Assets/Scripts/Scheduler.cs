@@ -31,4 +31,9 @@ public class Scheduler {
             _hasBeenCalled = true;
         }
     }
+
+    public static Scheduler Schedule(float timeToFire, Action callback, bool repeat = false)
+    {
+        return new Scheduler(timeToFire, callback, repeat);
+    }
 }
