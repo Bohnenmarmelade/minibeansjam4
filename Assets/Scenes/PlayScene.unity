@@ -645,6 +645,16 @@ MonoBehaviour:
   breakBottle1: {fileID: 8300000, guid: 47a2ac15d1dbf0e3195a4c751c56f90b, type: 3}
   breakBottle2: {fileID: 8300000, guid: c206600b464c2a3fcab1c3187a7d6cac, type: 3}
   breakBottle3: {fileID: 8300000, guid: 5487988f018a550c98f907cbf942f290, type: 3}
+  mitP: {fileID: 8300000, guid: 1dba01db7fab305c19bfad4041a7abea, type: 3}
+  mitA: {fileID: 8300000, guid: 1f5447168c680ba63aa54a5e95522f99, type: 3}
+  ohMan: {fileID: 8300000, guid: b4a689d73a30542c6bd69510ad0591c9, type: 3}
+  oops: {fileID: 8300000, guid: 02bbd6225dcffd8c5ac01220bb318e45, type: 3}
+  passAuf1: {fileID: 8300000, guid: db6131b1e587d1c2c9d135626e7a2323, type: 3}
+  passAuf2: {fileID: 8300000, guid: 3e9f711b718bf0677b2f808c70172af6, type: 3}
+  verdammt: {fileID: 8300000, guid: d7fb2453f3441163c8aafc673534155c, type: 3}
+  versager: {fileID: 8300000, guid: 3d5b8c5e9e52449578972d25593e6dd1, type: 3}
+  ildiko: {fileID: 8300000, guid: 58b98f5527ece5db783db568543586d4, type: 3}
+  poison: {fileID: 8300000, guid: 41f0c253959d48ecaa46f10c12069f00, type: 3}
 --- !u!4 &905010437
 Transform:
   m_ObjectHideFlags: 0

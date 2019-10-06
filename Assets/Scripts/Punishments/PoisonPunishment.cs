@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public class PoisonPunishment : MonoBehaviour, IPunishment
 {
@@ -12,6 +13,7 @@ public class PoisonPunishment : MonoBehaviour, IPunishment
     {
         Debug.Log("startPunishment without a position is risky for PoisonPunishment, using: " + transform.position);
         startPunishment(transform.position);
+        EventManager.TriggerEvent(Events.POISON, "");
     }
 
     public void startPunishment(Vector3 position)
