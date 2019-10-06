@@ -19,7 +19,8 @@ public class Blink : MonoBehaviour
     {
         upperBox.sizeDelta = new Vector2(2000, gameObject.GetComponent<RectTransform>().rect.height * heightProcentage / 2);
         lowerBox.sizeDelta = new Vector2(2000, gameObject.GetComponent<RectTransform>().rect.height * heightProcentage / 2);
-
+        upperBox.localPosition -= new Vector3(1000, 0);
+        lowerBox.localPosition -= new Vector3(1000, 0);
 
         startPosUpperBox = upperBox.position;
         startPosLowerBox = lowerBox.position;
