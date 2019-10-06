@@ -32,14 +32,15 @@ namespace Bottles
                 OnTypingCorrectly();
             else
             {
+                Debug.Log($"FAYUUUUL {typedCharacter}, {_typeableWord.fullWord}, {_typeableWord.toBeTyped}");
                 OnTypingError(typedCharacter);
             }
         }
 
         private void OnTypingError(char typo)
         {
-            EventManager.TriggerEvent(Events.BOTTLE_FAILURE, _typeableWord.fullWord);
             EventManager.StopListening(Events.KEY_DOWN, OnType);
+            EventManager.TriggerEvent(Events.BOTTLE_FAILURE, _typeableWord.fullWord);
         }
 
         private void OnTypingCorrectly()
