@@ -771,7 +771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c17b283073fa24ee3a6d7cadef4c35a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  valueToMove: {x: -10, y: 7, z: 0}
+  valueToMove: {x: -15, y: 7, z: 0}
   durationUntilStart: 1
   movementDuration: 2
   waited: 0
