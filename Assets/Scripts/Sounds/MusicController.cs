@@ -9,17 +9,24 @@ public class MusicController : MonoBehaviour
     public AudioClip loop1;
     public AudioClip loop2;
     public AudioClip outro;
-    //private AudioSource introAudioSource;
-    //private AudioSource loopAudioSource;
-    public AudioSource[] audioSourceArray;
+    public AudioSource mainSource;
     public AudioClip clipToPlay;
-    private double nextStartTime = 0.0;
     private int toggle = 0;
+    private bool fadeIn = false;
+    private bool fadeOut = false;
+
+    private float FadeTime = 1f;
+    private float startVolume;
     void Start () {
-        clipToPlay = intro;
+
     }
     void OnEnable()
     {
+        clipToPlay = intro;
+        startVolume = mainSource.volume;
+        mainSource.volume = 0.0f;
+        fadeIn = true;
+
         EventManager.StartListening(Events.START_GAME, onStartGame);
         EventManager.StartListening(Events.GAME_OVER, onGameOver);
         EventManager.StartListening(Events.INCREASE_DIFFICULTY, onIncreaseDifficulty);        
@@ -32,31 +39,34 @@ public class MusicController : MonoBehaviour
         EventManager.StopListening(Events.INCREASE_DIFFICULTY, onIncreaseDifficulty);        
     }
     void Update () {
-
-    if(AudioSettings.dspTime > nextStartTime - 1) {
-
-        // Loads the next Clip to play and schedules when it will start
-        audioSourceArray[toggle].clip = clipToPlay;
-        audioSourceArray[toggle].PlayScheduled(nextStartTime);
-
-        // Checks how long the Clip will last and updates the Next Start Time with a new value
-        double duration = (double)clipToPlay.samples / clipToPlay.frequency;
-        nextStartTime = nextStartTime + duration;
-
-        toggle = 1 - toggle;
-
-        }
+         if (fadeOut) {
+              mainSource.volume -= startVolume * Time.deltaTime / FadeTime;
+              if (mainSource.volume < 0.1) {
+                  fadeOut = false;
+                  fadeIn = true;
+                  mainSource.clip = clipToPlay;
+                  mainSource.Play();
+              }
+         } else if (fadeIn) {
+              mainSource.volume += startVolume * Time.deltaTime / FadeTime;
+              if (mainSource.volume > 0.5) {
+                  fadeIn = false;
+              }
+         }
     }
 
     void onStartGame(string eventPayload) {
         clipToPlay = loop1;
+        fadeOut = true;
     }
 
     void onIncreaseDifficulty(string eventPayload) {
         clipToPlay = loop2;
+        fadeOut = true;
     }
 
     void onGameOver(string eventPayload) {
         clipToPlay = outro;
+        fadeOut = true;
     }
 }
