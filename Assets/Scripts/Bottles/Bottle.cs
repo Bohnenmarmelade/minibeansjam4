@@ -96,6 +96,12 @@ namespace Bottles
             rb.isKinematic = true;
         }
 
+        public void StartPunishment()
+        {
+            Debug.Log("[Bottle] try to start punishment");
+            punishment.GetComponent<IPunishment>().startPunishment(transform.position);
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!_fadingAnimation.IsSpawned())
