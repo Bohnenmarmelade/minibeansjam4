@@ -24,6 +24,8 @@ namespace Bottles
         
         public Material outlineMaterial;
 
+        public List<char> currentFirstLetters;
+
         private void Awake()
         {
             _bottles = new Dictionary<string, GameObject>();
@@ -58,7 +60,7 @@ namespace Bottles
         private void SpawnBottle()
         {
             GameObject bottle = Instantiate(bottlePrefab, GetPosition(), Quaternion.identity);
-            bottle.GetComponent<Bottle>().Init(_currentDifficulty, PunishmentType.GetRandomPunishment());
+            bottle.GetComponent<Bottle>().Init(_currentDifficulty, PunishmentType.GetRandomPunishment(), currentFirstLetters);
             bottle.transform.parent = gameObject.transform;
             RegisterBottle(bottle);
             EventManager.TriggerEvent(Events.BOTTLE_SPAWN, "");
@@ -88,7 +90,7 @@ namespace Bottles
         {
             Destroy(_bottles[typeableWord]);
             _bottles.Remove(typeableWord);
-            
+            currentFirstLetters.Remove(typeableWord[0]);
             
         }
 
