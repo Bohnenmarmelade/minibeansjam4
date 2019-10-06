@@ -439,8 +439,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee2baace8e49490aaa3bd1e01fe33fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeMultiplier: 2
-  defaultShakeDuration: 2
 --- !u!1 &471659329
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,6 +769,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyPress: {fileID: 8300000, guid: 4380466f8958143fda1177a8e7456ad5, type: 3}
   moveBottle: {fileID: 8300000, guid: 10d1dae744f25efc4bb24b5d60636200, type: 3}
+  breakBottle1: {fileID: 8300000, guid: 47a2ac15d1dbf0e3195a4c751c56f90b, type: 3}
+  breakBottle2: {fileID: 8300000, guid: c206600b464c2a3fcab1c3187a7d6cac, type: 3}
+  breakBottle3: {fileID: 8300000, guid: 5487988f018a550c98f907cbf942f290, type: 3}
 --- !u!4 &905010437
 Transform:
   m_ObjectHideFlags: 0
