@@ -15,6 +15,7 @@ namespace Bottles
             {
                 _typeableWord = value;
                 SetTextFieldsContent();
+                
                 if (!_typeableWord.fullWord.Equals(""))
                 {
                     EventManager.StartListening(Events.KEY_DOWN, OnType);
@@ -37,7 +38,8 @@ namespace Bottles
 
         private void OnTypingError(char typo)
         {
-            EventManager.TriggerEvent(Events.BOTTLE_FAILURE, typo.ToString());
+            EventManager.TriggerEvent(Events.BOTTLE_FAILURE, _typeableWord.fullWord);
+            EventManager.StopListening(Events.KEY_DOWN, OnType);
         }
 
         private void OnTypingCorrectly()

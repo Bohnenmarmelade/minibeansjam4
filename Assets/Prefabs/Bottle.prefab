@@ -287,12 +287,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 541c4ac539ca1a34085ac6a8954f7fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  punishment: {fileID: 3649258405114506035, guid: 3b35ad99867f44c5faa7ac627e5ed39b,
-    type: 3}
-  firstLetter: 0
   purpleBottle: {fileID: 21300000, guid: 32e00978a2e1ac346a909606653c629a, type: 3}
   greenBottle: {fileID: 21300000, guid: 2560e0b0a7b9ee141882ff68158d4ff5, type: 3}
   blueBottle: {fileID: 21300000, guid: e107f484a68c73f4098d219fd8482d63, type: 3}
+  poisonPunishment: {fileID: 3649258405114506035, guid: 3b35ad99867f44c5faa7ac627e5ed39b,
+    type: 3}
+  shakePunishment: {fileID: 5062575466990778488, guid: 27704f26afbd17347b8a2fd69e4ae976,
+    type: 3}
+  sleepPunishment: {fileID: 3649258405114506035, guid: 3b35ad99867f44c5faa7ac627e5ed39b,
+    type: 3}
 --- !u!114 &-7197948818221524881
 MonoBehaviour:
   m_ObjectHideFlags: 0
