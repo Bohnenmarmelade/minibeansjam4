@@ -22,8 +22,6 @@ namespace Bottles
         private Scheduler _difficultyScheduler;
 
         private float _zOffset;
-        
-        public Material outlineMaterial;
 
         public List<char> currentFirstLetters;
 
@@ -80,7 +78,7 @@ namespace Bottles
                 breakParticlePosition.z = -9.5f;
                 Instantiate(breakParticleSystem, breakParticlePosition, Quaternion.identity);
 
-                DeregisterBottle(fullFailedWord);
+                DeregisterBottle(fullFailedWord, false);
 
                 if (fullFailedWord.Equals(textInput.TypeableWord.fullWord))
                 {
@@ -91,13 +89,13 @@ namespace Bottles
 
         void OnBottleSuccess(string typeableWord)
         {
-            DeregisterBottle(typeableWord);
+            DeregisterBottle(typeableWord, true);
             textInput.TypeableWord = new TypeableWord("");
         }
         
-        void DeregisterBottle(string typeableWord)
+        void DeregisterBottle(string typeableWord, bool wasSuccess)
         {
-            Destroy(_bottles[typeableWord]);
+            _bottles[typeableWord].GetComponent<Bottle>().OnCompletion(wasSuccess);
             _bottles.Remove(typeableWord);
             currentFirstLetters.Remove(typeableWord[0]);
         }
@@ -136,12 +134,14 @@ namespace Bottles
 
         void SetAndUpdateActiveWord(GameObject bottle, string typedKey)
         {
-            var textInputTypeableWord = bottle.gameObject.GetComponent<Bottle>().typeableWord;
-            textInputTypeableWord.type(typedKey[0]);
+            Bottle bottleComponent = bottle.gameObject.GetComponent<Bottle>();
             
-            textInput.TypeableWord = textInputTypeableWord;
+            bottleComponent.Focus();
+            
+            var textInputTypeableWord = bottleComponent.typeableWord;
+            textInputTypeableWord.type(typedKey[0]);
 
-            bottle.GetComponent<SpriteRenderer>().material = outlineMaterial;
+            textInput.TypeableWord = textInputTypeableWord;
         }
 
         bool TextInputIsLocked()
