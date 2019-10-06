@@ -1000,6 +1000,7 @@ MonoBehaviour:
   bottlePrefab: {fileID: 6848773254661987401, guid: 6cc595165ed8b12499a5d596f8fe56dc,
     type: 3}
   textInput: {fileID: 674935670}
+  outlineMaterial: {fileID: 2100000, guid: 2b84aea14c711e844b6b8d64ab27494d, type: 2}
 --- !u!4 &1510293858
 Transform:
   m_ObjectHideFlags: 0
