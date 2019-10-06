@@ -12,13 +12,13 @@ public class TypingSoundController : MonoBehaviour
     void OnEnable()
     {
         EventManager.StartListening(Events.KEY_DOWN, onTyping);
-        EventManager.StartListening(Events.BOTTLE_SUCCES, onBottleSuccess);
+        EventManager.StartListening(Events.BOTTLE_SUCCESS, onBottleSuccess);
     }
 
     void OnDisable()
     {
         EventManager.StopListening(Events.KEY_DOWN, onTyping);
-        EventManager.StopListening(Events.BOTTLE_SUCCES, onBottleSuccess);
+        EventManager.StopListening(Events.BOTTLE_SUCCESS, onBottleSuccess);
     }
 
     void Awake () {

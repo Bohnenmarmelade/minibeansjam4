@@ -37,7 +37,7 @@ namespace Bottles
 
         private void OnTypingError(char typo)
         {
-            EventManager.TriggerEvent(Events.TYPO, typo.ToString());
+            EventManager.TriggerEvent(Events.BOTTLE_FAILURE, typo.ToString());
             EventManager.TriggerEvent(Events.SHAKE, "10");
         }
     
@@ -46,7 +46,7 @@ namespace Bottles
             if (_typeableWord.toBeTyped.Length == 0)
             {
                 EventManager.StopListening(Events.KEY_DOWN, OnType);
-                EventManager.TriggerEvent(Events.BOTTLE_SUCCES, _typeableWord.fullWord);
+                EventManager.TriggerEvent(Events.BOTTLE_SUCCESS, _typeableWord.fullWord);
             }
 
             SetTextFieldsContent();

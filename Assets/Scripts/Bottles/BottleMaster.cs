@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Punishments;
 using UnityEngine;
 using Utils;
 
@@ -20,13 +21,16 @@ namespace Bottles
         private Scheduler _difficultyScheduler;
 
         private float _zOffset;
+        
+        public Material outlineMaterial;
 
         private void Awake()
         {
             _bottles = new Dictionary<string, GameObject>();
 
             EventManager.StartListening(Events.KEY_DOWN, ActiveBottleFromKeyDown);
-            EventManager.StartListening(Events.BOTTLE_SUCCES, DeregisterBottle);
+            EventManager.StartListening(Events.BOTTLE_SUCCESS, OnBottleSuccess);
+            EventManager.StartListening(Events.BOTTLE_FAILURE, OnBottleFailure);
             EventManager.StartListening(Events.INCREASE_DIFFICULTY, payload => IncreaseDifficulty());
         }
 
@@ -39,7 +43,9 @@ namespace Bottles
 
         private void OnDisable()
         {
-            EventManager.StopListening(Events.BOTTLE_SUCCES, DeregisterBottle);
+            EventManager.StopListening(Events.KEY_DOWN, ActiveBottleFromKeyDown);
+            EventManager.StopListening(Events.BOTTLE_SUCCESS, OnBottleSuccess);
+            EventManager.StopListening(Events.BOTTLE_FAILURE, OnBottleFailure);
             EventManager.StopListening(Events.INCREASE_DIFFICULTY, payload => IncreaseDifficulty());
         }
 
@@ -52,18 +58,38 @@ namespace Bottles
         private void SpawnBottle()
         {
             GameObject bottle = Instantiate(bottlePrefab, GetPosition(), Quaternion.identity);
-            bottle.GetComponent<Bottle>().InitWordByDifficulty(_currentDifficulty);
+            bottle.GetComponent<Bottle>().Init(_currentDifficulty, PunishmentType.GetRandomPunishment());
             bottle.transform.parent = gameObject.transform;
             RegisterBottle(bottle);
             EventManager.TriggerEvent(Events.BOTTLE_SPAWN, "");
         }
 
+        void OnBottleFailure(string payload)
+        {
+            if (_bottles.ContainsKey(payload))
+            {
+                DeregisterBottle(payload);
+
+                if (payload.Equals(textInput.TypeableWord.fullWord))
+                {
+                    textInput.TypeableWord = new TypeableWord("");
+                }
+            }
+        }
+
+        void OnBottleSuccess(string typeableWord)
+        {
+            DeregisterBottle(typeableWord);
+            
+            textInput.TypeableWord = new TypeableWord("");
+        }
+        
         void DeregisterBottle(string typeableWord)
         {
             Destroy(_bottles[typeableWord]);
             _bottles.Remove(typeableWord);
-
-            textInput.TypeableWord = new TypeableWord("");
+            
+            
         }
 
         void RegisterBottle(GameObject bottle)
@@ -89,6 +115,8 @@ namespace Bottles
                     return;
                 }
             }
+            
+            EventManager.TriggerEvent(Events.BOTTLE_FAILURE);
         }
 
         bool BottleCanBeActivated(string typedKey, string bottleEntryKey, GameObject bottleEntryValue)
@@ -102,6 +130,8 @@ namespace Bottles
             var textInputTypeableWord = bottle.gameObject.GetComponent<Bottle>().typeableWord;
             textInputTypeableWord.type(typedKey[0]);
             textInput.TypeableWord = textInputTypeableWord;
+
+            bottle.GetComponent<SpriteRenderer>().material = outlineMaterial;
         }
 
         bool TextInputIsLocked()

@@ -1,7 +1,7 @@
 {
 "companyName": "Droguli",
 "productName": "Droguli",
-"productVersion": "0.1",
+"productVersion": "0.2",
 "dataUrl": "droguli-build.data.unityweb",
 "wasmCodeUrl": "droguli-build.wasm.code.unityweb",
 "wasmFrameworkUrl": "droguli-build.wasm.framework.unityweb",
