@@ -27,6 +27,8 @@ namespace Bottles
 
         public List<char> currentFirstLetters;
 
+        public ParticleSystem breakParticleSystem;
+
         private void Awake()
         {
             _bottles = new Dictionary<string, GameObject>();
@@ -73,6 +75,10 @@ namespace Bottles
             {
                 Bottle bottle = _bottles[fullFailedWord].GetComponent<Bottle>();
                 bottle.StartPunishment();
+
+                Vector3 breakParticlePosition = bottle.transform.position;
+                breakParticlePosition.z = -9.5f;
+                Instantiate(breakParticleSystem, breakParticlePosition, Quaternion.identity);
 
                 DeregisterBottle(fullFailedWord);
 

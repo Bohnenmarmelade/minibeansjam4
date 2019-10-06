@@ -55,8 +55,8 @@ namespace Bottles
 
         private void SetTextFieldsContent()
         {
-            textFieldTyped.text = "<b>" + _typeableWord.succesfullyTyped + "</b>" + "<color=#D3D3D3>" +
-                                  _typeableWord.toBeTyped + "</color>";
+            textFieldTyped.text = "<b>" + _typeableWord.succesfullyTyped.ToUpper() + "</b>" + "<color=#D3D3D3>" +
+                                  _typeableWord.toBeTyped.ToUpper() + "</color>";
         }
     }
 }
