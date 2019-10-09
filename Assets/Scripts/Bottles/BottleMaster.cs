@@ -80,7 +80,7 @@ namespace Bottles
 
                 DeregisterBottle(fullFailedWord, false);
 
-                if (fullFailedWord.Equals(textInput.TypeableWord.fullWord))
+                if (textInput && textInput.TypeableWord != null && fullFailedWord.Equals(textInput.TypeableWord.fullWord))
                 {
                     textInput.TypeableWord = new TypeableWord("");
                 }
@@ -157,8 +157,8 @@ namespace Bottles
 
         private Vector3 GetPosition()
         {
-            float randX = Mathf.Round(Random.Range(-3.5625f, 3.5625f) * 16) / 16;
-            return new Vector3(randX, -0.5625f, 2.792969f + (++_zOffset));
+            float randX = Mathf.Round(Random.Range(-2.7625f, 2.7625f) * 16) / 16;
+            return new Vector3(randX, -0.8125f, 2.792969f + (++_zOffset));
         }
     }
 }

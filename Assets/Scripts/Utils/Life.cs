@@ -10,7 +10,7 @@ public class Life : MonoBehaviour
     private bool isDying = false;
     private float dyingDuration = .3f;
 
-    private Vector3 targetScale = new Vector3(10f, 10f, -5f);
+    private Vector3 targetScale = Vector3.one;
     private Vector3 shakeRotationAmount = new Vector3(0, 0, .5f);
     private Vector3 shakePositionAmount = new Vector3(.01f, .01f, 0f);
 

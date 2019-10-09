@@ -6,54 +6,35 @@ using System.Collections;
 public class LifeIndicator : MonoBehaviour
 {
     public GameObject heartPrefab;
-    private GameStatsController gameStatsController;
+    public Vector3 firstPosition;
     public float marginTop = 5f;
-
+    public Vector3 positionOffset = new Vector3(); //must be a multiple of 1/16 unit
+    
     private List<GameObject> currentLifes;
 
-    private Vector3 topLeft;
-    private Vector3 positionInWorldSpace;
-
-    private Canvas canvas;
-
+    private GameStatsController gameStatsController;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameStatsController = GameObject.FindGameObjectsWithTag("_app")[0].GetComponent(typeof(GameStatsController)) as GameStatsController;
+        if (GameObject.FindGameObjectWithTag("_app"))
+            gameStatsController = GameObject.FindGameObjectsWithTag("_app")[0].GetComponent<GameStatsController>();
         currentLifes = new List<GameObject>();
-
-        //calculate position of the life indicators (top left for now)
-        canvas = gameObject.transform.parent.gameObject.GetComponent<Canvas>();
-
-        RectTransform lifePrefabRectTransform = (RectTransform)heartPrefab.transform;
-        Vector3 heartPrefabSize = lifePrefabRectTransform.rect.size * lifePrefabRectTransform.localScale;
-        heartPrefabSize.y *= -1;
-
-        RectTransform rectTransform = canvas.GetComponent<RectTransform>();
-        float x = rectTransform.rect.xMin;
-        float y = (rectTransform.rect.yMin) * -1;
-        float z = rectTransform.position.z;
-
-        topLeft = new Vector3(x, y, z);
-        positionInWorldSpace = topLeft + heartPrefabSize/2;
-        positionInWorldSpace.y -= marginTop;
 
         StartCoroutine("initLifeBar");
 
         EventManager.StartListening(Events.LOSE_LIFE, LoseLife);
         EventManager.StartListening(Events.GAME_OVER, stopListening);
         
-        Debug.Log("Top Left Corner is at: " + topLeft.ToString());
-        Debug.Log("Life Indicator is at: " + positionInWorldSpace.ToString());
+        Debug.Log("Top Left Corner is at: " + firstPosition.ToString());
+        //Debug.Log("Life Indicator is at: " + positionInWorldSpace.ToString());
     }
 
     public void LoseLife(string _)
     {
         GameObject last = currentLifes[currentLifes.Count - 1];
-
+        
         last.GetComponent<Life>().DIE();
-        //Destroy(last);
         currentLifes.Remove(last);
     }
 
@@ -64,13 +45,16 @@ public class LifeIndicator : MonoBehaviour
 
     IEnumerator initLifeBar()
     {
-        Vector3 nextPos = positionInWorldSpace;
-        for (int i = 0; i < gameStatsController.currentLifes; i++)
+        Vector3 nextPosition = firstPosition;
+        int lifes = 10;
+        if (gameStatsController)
+            lifes = gameStatsController.currentLifes;
+        for (int i = 0; i < lifes; i++)
         {
-            GameObject heart = Instantiate(heartPrefab, nextPos, Quaternion.identity);
-            heart.transform.SetParent(canvas.transform, false);
+            GameObject heart = Instantiate(heartPrefab, nextPosition, Quaternion.identity);
+            heart.transform.SetParent(transform, false);
             currentLifes.Add(heart);
-            nextPos.x += heartPrefab.GetComponent<RectTransform>().rect.width * heartPrefab.transform.localScale.x;
+            nextPosition += positionOffset;
             yield return new WaitForSeconds(0.1f);
         }
     }
