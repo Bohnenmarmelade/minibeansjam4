@@ -26,15 +26,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860029989910037857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3722202, y: 1.3722202, z: 1.3722202}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3748234520567180066}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -370}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6134401783948530081
@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 4002252546827742885}
   - component: {fileID: -2672347664362195868}
   - component: {fileID: 8677983046749744191}
+  - component: {fileID: 5110929803487824412}
   m_Layer: 0
   m_Name: Bottle
   m_TagString: Untagged
@@ -287,13 +288,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 541c4ac539ca1a34085ac6a8954f7fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  greenBottle: {fileID: 21300000, guid: 2560e0b0a7b9ee141882ff68158d4ff5, type: 3}
-  purpleBottle: {fileID: 21300000, guid: 32e00978a2e1ac346a909606653c629a, type: 3}
-  blueBottle: {fileID: 21300000, guid: e107f484a68c73f4098d219fd8482d63, type: 3}
-  greenBottleSuccess: {fileID: 21300000, guid: ddcc3f5da12ce485f870d0329eeebb58, type: 3}
-  purpleBottleSuccess: {fileID: 21300000, guid: 0caeb6d4004c54005bc23c06f090709c,
+  greenBottle: {fileID: 21300000, guid: e91815f239ee34dd5a03c09b9726e03b, type: 3}
+  purpleBottle: {fileID: 21300000, guid: 92d734e5778ec423e9526c32eb536cf8, type: 3}
+  blueBottle: {fileID: 21300000, guid: ccc6c795f761f472d803e0a203a63a88, type: 3}
+  greenBottleSuccess: {fileID: 21300000, guid: 4c201cb1d97f744c190dd93918244710, type: 3}
+  purpleBottleSuccess: {fileID: 21300000, guid: 88aea29673f7e437080f3705e99fd810,
     type: 3}
-  blueBottleSuccess: {fileID: 21300000, guid: 5971871ee74fa481d95d9f79a20e2fce, type: 3}
+  blueBottleSuccess: {fileID: 21300000, guid: f46ab622b4d384e798318fc200215513, type: 3}
   poisonPunishment: {fileID: 3649258405114506035, guid: 3b35ad99867f44c5faa7ac627e5ed39b,
     type: 3}
   shakePunishment: {fileID: 5062575466990778488, guid: 27704f26afbd17347b8a2fd69e4ae976,
@@ -351,3 +352,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &5110929803487824412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848773254661987401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd5df74f7e2b543a4bc2f3ad9a84fa9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overallDisplacement: {x: 0, y: 0, z: 0}
+  lastFramelocalPosition: {x: 0, y: 0, z: 0}
+  startlocalPosition: {x: 0, y: 0, z: 0}

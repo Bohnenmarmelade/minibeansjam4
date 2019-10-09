@@ -168,7 +168,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 150
+      scalar: 80
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -2616,7 +2616,7 @@ ParticleSystem:
     drag:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0.8
       minScalar: 0
       maxCurve:
         serializedVersion: 2

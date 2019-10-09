@@ -4,7 +4,7 @@
     public class Breathe : MonoBehaviour
     {
         Vector3 startPos;
-        public const float amplitude = 0.5f;
+        public const float amplitude = 0.25f;
         public const float period = 2f;
         protected void Start()
         {

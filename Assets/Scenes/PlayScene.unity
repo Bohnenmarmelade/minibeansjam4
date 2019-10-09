@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 397678674}
   - component: {fileID: 397678673}
   - component: {fileID: 397678675}
+  - component: {fileID: 397678676}
   m_Layer: 0
   m_Name: Table
   m_TagString: Untagged
@@ -343,6 +344,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cbbfdf50420f263da216c86659b2ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &397678676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397678672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd5df74f7e2b543a4bc2f3ad9a84fa9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overallDisplacement: {x: 0, y: 0, z: 0}
+  lastFramelocalPosition: {x: 0, y: 0, z: 0}
+  startlocalPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &445743457
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,6 +371,7 @@ GameObject:
   - component: {fileID: 445743459}
   - component: {fileID: 445743458}
   - component: {fileID: 445743461}
+  - component: {fileID: 445743462}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -391,13 +408,13 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 5.69
-    height: 3.24
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 8
   orthographic: 1
-  orthographic size: 9.491543
+  orthographic size: 7.2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -434,11 +451,32 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 445743457}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ee2baace8e49490aaa3bd1e01fe33fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a7182f9e2af54ede979e36d2382d33e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  w: 256
+--- !u!114 &445743462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445743457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AssetsPPU: 16
+  m_RefResolutionX: 96
+  m_RefResolutionY: 54
+  m_UpscaleRT: 1
+  m_PixelSnapping: 0
+  m_CropFrameX: 1
+  m_CropFrameY: 1
+  m_StretchFill: 0
 --- !u!1 &569264115
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +837,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -220}
+  m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: 800, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &992109709
@@ -822,11 +860,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: e24556125f9c14598ba3ae683ad8490d, type: 3}
-    m_FontSize: 54
+    m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
-    m_MaxSize: 100
+    m_MaxSize: 128
     m_Alignment: 7
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -923,7 +961,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1032270077}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalPosition: {x: 0, y: 0.1875, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 397678674}
@@ -967,7 +1005,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3af179614b57a45ffb5fb5a7310fbb50, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f8ead3d6be82742528d40b3e74baff23, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -989,6 +1027,7 @@ GameObject:
   - component: {fileID: 1510293858}
   - component: {fileID: 1510293857}
   - component: {fileID: 1510293859}
+  - component: {fileID: 1510293860}
   m_Layer: 0
   m_Name: BottleMaster
   m_TagString: Untagged
@@ -1011,7 +1050,6 @@ MonoBehaviour:
   bottlePrefab: {fileID: 6848773254661987401, guid: 6cc595165ed8b12499a5d596f8fe56dc,
     type: 3}
   textInput: {fileID: 674935670}
-  outlineMaterial: {fileID: 2100000, guid: 2b84aea14c711e844b6b8d64ab27494d, type: 2}
   currentFirstLetters: 
   breakParticleSystem: {fileID: 3363962377723732222, guid: fe6180ceda06d40ac847d69557654ac9,
     type: 3}
@@ -1042,3 +1080,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cbbfdf50420f263da216c86659b2ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1510293860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510293856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd5df74f7e2b543a4bc2f3ad9a84fa9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overallDisplacement: {x: 0, y: 0, z: 0}
+  lastFramelocalPosition: {x: 0, y: 0, z: 0}
+  startlocalPosition: {x: 0, y: 0, z: 0}

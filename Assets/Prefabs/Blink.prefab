@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 4
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
@@ -115,8 +115,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperBox: {fileID: 7521614466217596090}
   lowerBox: {fileID: 7521614466153023962}
-  rand1: 0
-  rand2: 0
   heightProcentage: 0.6
 --- !u!1 &7521614466153023941
 GameObject:
@@ -190,7 +188,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 4
 --- !u!1 &7521614466217596069
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,4 +261,4 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 4
